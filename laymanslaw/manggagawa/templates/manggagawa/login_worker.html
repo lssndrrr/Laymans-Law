@@ -1,0 +1,31 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'manggagawa/login_worker_style.css'%}">
+</head>
+<title>Log In</title>
+<body>
+    <div class="landing-page">
+        <div class="SideCoverManggagawa">
+            <img class="RedBg" src="{% static 'manggagawa/assets/red_bg.png'%}" ; />
+            <div class="DarkTexture"></div>
+            <div class="Logo">
+                <img src="{% static 'landing/assets/Logo.png'%}" />
+            </div>
+        </div>
+
+        <div class="login">
+            <h1>Log in</h1>
+            <input type="email" placeholder="Email" />
+
+            <input type="password" placeholder="Password" />
+
+            <button>
+                Log in
+            </button>
+        </div>
+    </div>
+</body>
+</html>
