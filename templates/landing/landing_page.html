@@ -1,0 +1,36 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'landing_style.css'%}">
+</head>
+    <title>Layman's Law</title>
+    <body>
+        <div class="frame">
+            <div class = "redside">
+                <div class="logo">
+                    <img src="{% static 'assets/Logo.png'%}">
+                </div>
+                <div class="dark_overlay"></div>
+                <pre>
+                    Intindihin ang mga 
+                    batas.
+
+                    Alamin ang iyong mga 
+                    karapatan.
+                </pre>
+            </div>
+            <div class="blueside">
+                <div class="buttons">
+                    <a href="{%url 'ManggagawaLogin'%}" class="red">
+                        MANGGAGAWA AKO
+                    </a>
+    
+                    <a href="{%url 'AbugadoLogin'%}" class="blue">
+                        ABOGADO AKO
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
