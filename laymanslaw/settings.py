@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'laymanslaw',
         'USER': 'root',
-		'PASSWORD': 'J4nuary!',
+		'PASSWORD': 'root!',
 		'HOST':'localhost',
 		'PORT':'3306', 
     }
