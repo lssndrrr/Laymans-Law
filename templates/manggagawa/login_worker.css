@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: outfit;
+    src: url();
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.landing-page{
+    background: #7B1113; 
+    display: flex;
+    width: 100%;
+    height: inherit;
+    justify-content: flex-start; 
+    align-items: center; 
+}
+
+.SideCoverManggagawa, .login{
+    position: relative;
+    flex: 1;
+    height: 100%;
+}
+
+.RedBg{
+    position: absolute;
+    top: 0px; 
+    left: 0px; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+
+.DarkTexture{
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    bottom: 0;
+    right: 0;
+    opacity: 0.80; 
+    background: #2D0607;
+    z-index: 1;
+}
+
+.Logo{
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    bottom: 0;
+    right: 0; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2;
+}
+
+.Logo img{
+    height: 100px;
+}
+
+h1{
+    text-align: center; 
+    color: white; 
+    font-size: 36px; 
+    font-family: Arial, Helvetica, sans-serif; 
+    font-weight: 700; 
+    word-wrap: break-word;
+}
+
+
+.login{
+    display: flex;
+    flex-direction: column;
+    padding: 36px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    display: block;
+    width: 50%; 
+    padding: 12px 31px;
+    height: 36px;
+    font-size: 16px;
+    background: #D9D9D9; 
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    margin-bottom: 16px;
+}
+
+button{
+    display: block;
+    padding: 14px 10px;
+    background: #661616; 
+    border-radius: 40px; 
+    outline:none;
+    border:none;
+    color: white;
+    font-size: 15px;
+    width: 20%;
+}
+
+h2{
+    color: white;
+    font-size: 16px;
+    display: inline;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+a{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup{
+    display: block;
+    margin-top: 36px;
+}
