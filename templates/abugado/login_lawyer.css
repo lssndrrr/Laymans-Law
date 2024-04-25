@@ -14,7 +14,7 @@ margin: 0;
 }
 
 .landing-page{
-background: #681717; 
+background: #4137B0; 
 display: flex;
 width: 100%;
 height: inherit;
@@ -28,7 +28,7 @@ flex: 1;
 height: 100%;
 }
 
-.RedBg{
+.BlueBg{
 position: absolute;
 top: 0px; 
 left: 0px; 
@@ -44,7 +44,7 @@ top: 0px;
 bottom: 0;
 right: 0;
 opacity: 0.80; 
-background: #2D0607;
+background: #191544;
 z-index: 1;
 }
 
@@ -99,7 +99,7 @@ margin-bottom: 16px;
 button{
 display: block;
 padding: 14px 10px;
-background: #471010; 
+background: #201b57; 
 border-radius: 40px; 
 outline:none;
 border:none;
