@@ -1,0 +1,35 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'abugado/lawyer_login.css'%}">
+    </head>
+    <title>Log In</title>
+    <body>
+        <div class="landing-page">
+            <div class="SideCoverManggagawa">
+                <img class="BlueBg" src="{% static 'assets/blue_bg.png'%}";/>
+                <div class="DarkTexture"></div>
+                <div class="Logo">
+                    <img src="{% static 'assets/Logo.png'%}"/>
+                </div>
+            </div>
+            
+            <div class="login">
+                <h1>Log in</h1>
+                <input type="email" placeholder="Email"/>
+
+                <input type="password" placeholder="Password"/>
+        
+                <button>
+                    Log in
+                </button>
+                
+                <div class="signup">
+                    <h2>Don't have an account?</h2>
+                    <a href="{%url 'AbugadoSignUp'%}">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
