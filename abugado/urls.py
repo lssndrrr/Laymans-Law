@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [ 
     path('createAbugado/', views.createAbugado),
-    path('abugadoLogin/', views.loginA, name="AbugadoLogin"),
+    path('ALogin/', views.loginA, name="AbugadoLogin"),
+    path('ASignUp/', views.signupA, name="AbugadoSignUp"),
     path('Profile/', views.checkProfile, name="Abugado Profile")
 ]

@@ -11,7 +11,7 @@ def createAbugado(request):
 
 def loginA(request):
     if request.method == "GET":
-        return render(request, "abugado/login_lawyer.html")
+        return render(request, "abugado/lawyer_login.html")
     try:
         password=request.POST.get("password")
         profile=Abugado.objects.get(email_add=request.POST.get("email_add"))
@@ -26,5 +26,10 @@ def loginA(request):
         # return render(request, "abugado/sign_up.html")
         pass
 
+def signupA(request):
+    if request.method == "GET":
+        return render(request, "abugado/lawyer_signup.html")
+    return render(request, "abugado/lawyer_signup.html")
+    
 def checkProfile(request):
     pass

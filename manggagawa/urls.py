@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [ 
     # path('createManggagawa/', views.createAbugado),
     path('Mlogin/', views.loginM, name="ManggagawaLogin"),
+    path('MSignUp/', views.signupM, name="ManggagawaSignUp")
     #path('Profile/', views.checkProfile, name="Abugado Profile")
 ]

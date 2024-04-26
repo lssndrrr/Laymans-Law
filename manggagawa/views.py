@@ -5,7 +5,7 @@ from .models import Manggagawa
 
 def loginM(request):
     if request.method == "GET":
-        return render(request, "manggagawa/login_worker.html")
+        return render(request, "manggagawa/laymen_login.html")
     # try:
     #     password=request.POST.get("password")
     #     profile=ProfileM.objects.get(email_add=request.POST.get("email_add"))
@@ -19,3 +19,6 @@ def loginM(request):
     # except:
     #     #return render(request, "abugado/sign_up.html")
     #     pass
+
+def signupM(request):
+    return render(request, "manggagawa/laymen_signup.html")
