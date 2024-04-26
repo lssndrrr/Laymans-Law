@@ -83,9 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'laymanslaw',
-        'USER': 'root',
-		'PASSWORD': 'root!',
-		'HOST':'localhost',
+        'USER': 'admin',
+		'PASSWORD': 'root!root!',
+		'HOST':'laymans-law.c12g0aamc9pm.ap-southeast-2.rds.amazonaws.com',
 		'PORT':'3306', 
     }
 }
