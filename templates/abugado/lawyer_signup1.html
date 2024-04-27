@@ -2,19 +2,20 @@
 <html>
 <body>
 
-<h2>HTML Forms</h2>
+<h2>Sign up</h2>
+<form action="{%url 'AbugadoSignUp2'%}" method="post">
+    {% csrf_token %}
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" required><br>
 
-<form action="/action_page.php">
-  <label for="email">Email:</label><br>
-  <input type="text" id="email" name="email"><br>
-  <label for="pass">Password:</label><br>
-  <input type="text" id="pass" name="pass" ><br><br>
-  <label for="cpass">Confirm Password:</label><br>
-  <input type="text" id="cpass" name="cpass" ><br><br>
-  <input type="submit" value="Submit">
+    <label for="pass">Password:</label><br>
+    <input type="text" id="pass" name="pass" required><br>
+
+    <label for="cpass">Confirm Password:</label><br>
+    <input type="text" id="cpass" name="cpass" required><br>
+
+    <button type="submit">Next</button>
 </form> 
-
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
 </body>
 </html>

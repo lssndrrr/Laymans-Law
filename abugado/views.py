@@ -28,8 +28,11 @@ def loginA(request):
 
 def signupA(request):
     if request.method == "GET":
-        return render(request, "abugado/lawyer_signup.html")
-    return render(request, "abugado/lawyer_signup.html")
+        return render(request, "abugado/lawyer_signup1.html")
+    return render(request, "abugado/lawyer_signup1.html")
+
+def signupA2(request):
+    return render(request, "abugado/lawyer_signup_cont.html")
     
 def checkProfile(request):
     pass
