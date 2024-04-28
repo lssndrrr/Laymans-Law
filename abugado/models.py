@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth import AbstractUser
 
 # Create your models here.
 
-class AbugadoAcc(models.Model):
+class AbugadoAcc(AbstractUser):
     account_created = models.DateField(auto_now_add=True)
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=200)
