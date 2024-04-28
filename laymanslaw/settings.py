@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,7 +45,11 @@ INSTALLED_APPS = [
     'wiki',
     'manggagawa',
     'abugado',
+    'authentication',
 ]
+
+# Custom user model
+AUTH_USER_MODEL = 'core.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
