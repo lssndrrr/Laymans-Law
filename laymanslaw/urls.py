@@ -22,5 +22,6 @@ urlpatterns = [
     path('landing/', include("landing.urls")),
     path('abugado/', include("abugado.urls")),
     path('wiki/', include("wiki.urls")),
-    path('manggagawa/', include("manggagawa.urls"))
+    path('manggagawa/', include("manggagawa.urls")),
+    path('authentication/', include("authentication.urls"))
 ]

@@ -1,9 +1,8 @@
 from django.db import models
-from django.contrib.auth import AbstractUser
 
 # Create your models here.
 
-class AbugadoAcc(AbstractUser):
+class AbugadoAcc(models.Model):
     account_created = models.DateField(auto_now_add=True)
     email = models.EmailField(primary_key=True)
     password = models.CharField(max_length=200)
@@ -15,7 +14,7 @@ class Abugado(models.Model):
     license_number = models.CharField(max_length=200)
     sex = models.CharField(max_length=2)
     contact_number = models.CharField(max_length=12)
-    abugado_acc = models.OneToOneField(to=AbugadoAcc, on_delete=models.CASCADE, primary_key=True)
+    # abugado_acc = models.OneToOneField(to=AbugadoAcc, on_delete=models.CASCADE, primary_key=True)
     
 class Cases(models.Model):
     abugado = models.ForeignKey(to=Abugado, on_delete=models.CASCADE)

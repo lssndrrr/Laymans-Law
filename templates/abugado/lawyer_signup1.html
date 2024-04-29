@@ -1,22 +1,123 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Sign up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .password-strength {
+            display: none;
+        }
+
+        .password-strength-message {
+            color: #007bff;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            form button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
 <body>
 
-<h2>Sign up</h2>
-<form action="{%url 'AbugadoSignUp2'%}" method="post">
-    {% csrf_token %}
-    <label for="email">Email:</label><br>
-    <input type="text" id="email" name="email" required><br>
+    <div class="container">
+        <h2>Sign up</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.user_type }}
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                <div class="input-group">
+                    {{ form.password1 }}
 
-    <label for="pass">Password:</label><br>
-    <input type="text" id="pass" name="pass" required><br>
+                </div>
+                {{ form.password1.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i> <!-- Font Awesome icon. haven't installed-->
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
-    <label for="cpass">Confirm Password:</label><br>
-    <input type="text" id="cpass" name="cpass" required><br>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePassword = document.querySelector('#toggle-password');
+            const passwordInput = document.querySelector('#password-input');
+            const cpasswordInput = document.querySelector('#cpassword-input');
 
-    <button type="submit">Next</button>
-</form> 
-
+            togglePassword.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                const ctype = cpasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                cpasswordInput.setAttribute('type', type);
+                // Change icon based on password visibility
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+                this.querySelector('i').classList.toggle('fa-eye');
+            });
+        });
+    </script>
 </body>
+
 </html>
+
 

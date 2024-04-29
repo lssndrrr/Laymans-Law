@@ -1,6 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from authentication.forms import SignUpForm
 from .models import Abugado, Cases
 from django.http import HttpResponse
+from django.contrib import messages
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 # Create your views here.
 def createAbugado(request):
@@ -27,9 +34,34 @@ def loginA(request):
         pass
 
 def signupA(request):
-    if request.method == "GET":
-        return render(request, "abugado/lawyer_signup1.html")
-    return render(request, "abugado/lawyer_signup1.html")
+    context = {}
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        
+        if form.is_valid():
+            logger.warning('form is valid')
+            user = form.save(commit=False)
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+            cpassword = form.cleaned_data['password2']
+            context['email'] = email
+            
+            if password == cpassword:
+                user.set_password(password)
+                user.save()
+                
+                messages.success(request, f'Account created, {email}. Proceed to registration page.')
+                return redirect(reverse('AbugadoSignUp2'), context)
+            else:
+                form.add_error('cpassword', 'Passwords do not match.')
+        else:
+            
+            logger.warning('form is NOT valid', form)
+    else:
+        user_type = 'abugado'
+        form = SignUpForm(initial={'user_type': user_type})
+    context['form'] = form
+    return render(request, "abugado/lawyer_signup1.html", context)
 
 def signupA2(request):
     return render(request, "abugado/lawyer_signup_cont.html")

@@ -3,9 +3,6 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 # Create your models here.
 
-class CustomUser(AbstractUser):
-    pass
-
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -13,7 +10,7 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        user.save(self._db)
+        user.save(using=self._db)
         return user
     
     def create_superuser(self, email, password=None, **extra_fields):
@@ -33,7 +30,8 @@ class CustomUser(AbstractUser):
     
     USER_TYPE_CHOICES = (
         ('abugado', 'Abugado'),
-        ('manggagawa', 'Manggagawa')
+        ('manggagawa', 'Manggagawa'),
+        ('admin', 'Admin')
     )
     
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
