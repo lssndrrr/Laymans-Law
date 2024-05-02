@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from authentication.forms import SignUpForm
+from .forms import ARegistration
 from .models import Abugado, Cases
 from django.http import HttpResponse
 from django.contrib import messages
@@ -61,10 +62,16 @@ def signupA(request):
         user_type = 'abugado'
         form = SignUpForm(initial={'user_type': user_type})
     context['form'] = form
-    return render(request, "abugado/lawyer_signup1.html", context)
+    return render(request, "abugado/lawyer_signup.html", context)
 
 def signupA2(request):
-    return render(request, "abugado/lawyer_signup_cont.html")
+    context = {}
+    if request.method == 'POST':
+        pass
+    else:
+        form = ARegistration()
+        context['form'] = form
+    return render(request, "abugado/lawyer_signup_cont.html", context)
     
 def checkProfile(request):
     pass
