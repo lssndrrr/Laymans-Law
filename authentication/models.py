@@ -16,6 +16,7 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('user_type', 'admin')
         
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
@@ -25,11 +26,15 @@ class CustomUserManager(BaseUserManager):
     
 class CustomUser(AbstractUser):
     username = None
-    email = models.EmailField(unique=True)
+    first_name = None
+    last_name = None
+    id = None
+    email = models.EmailField(unique=True, primary_key=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    registered = models.BooleanField(default=False)
     
     USER_TYPE_CHOICES = (
-        ('abugado', 'Abugado'),
+        ('abogado', 'Abogado'),
         ('manggagawa', 'Manggagawa'),
         ('admin', 'Admin')
     )
@@ -37,10 +42,13 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
     
     def is_lawyer(self):
-        return self.user_type == 'abugado'
+        return self.user_type == 'abogado'
 
     def is_laymen(self):
         return self.user_type == 'manggagawa'
+    
+    def is_registered(self):
+         return self.registered
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_type']
