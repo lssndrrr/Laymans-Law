@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from abugado.models import Abugado
+from abogado.models import Abogado
 
 # Create your views here.
 
