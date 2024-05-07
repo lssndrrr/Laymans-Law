@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'landing',
     'wiki',
     'manggagawa',
-    'abugado',
+    'abogado',
     'authentication',
 ]
 
@@ -147,3 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ai integration
 # id verification
 # tags (for cases you might want to take)
+# api to sc database so auto-verification is easier (currently exporting large datasets from website)
+# email verification
+# captcha
+# delete unregistered users after a month
