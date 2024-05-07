@@ -111,6 +111,11 @@ def signupA2(request):
                 abogado.abogado_acc = user
                 user.registered = True
                 abogado.verified = True
+                
+                abogado.first_name = abogado.first_name.title()
+                abogado.last_name = abogado.last_name.title()
+                abogado.middle_initial = abogado.middle_initial.upper()
+
                 user.save()
                 abogado.save()
                 del request.session['user_pk']
