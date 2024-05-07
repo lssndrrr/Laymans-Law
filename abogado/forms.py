@@ -4,7 +4,12 @@ import pandas as pd
 from django.core.exceptions import ValidationError 
 import os
 from django.conf import settings
+import logging
 
+
+
+
+logger = logging.getLogger(__name__)
 
 
 GENDER_CHOICES = (
@@ -29,7 +34,7 @@ class ARegistration(forms.ModelForm):
     
     class Meta:
         model = Abogado
-        fields = ('first_name', 'last_name', 'birth_date', 'gender', 'roll_number', 'roll_signed_date', 'contact_number')
+        fields = ('first_name', 'middle_initial', 'last_name', 'birth_date', 'gender', 'roll_number', 'roll_signed_date', 'contact_number')
         
     def clean(self):
         cleaned_data = super().clean()
@@ -50,7 +55,8 @@ class ARegistration(forms.ModelForm):
                 raise ValidationError("The roll number provided does not belong to an existing lawyer.")
             
             csv_row = df[df['roll_no'] == roll_number].iloc[0]
-            if csv_row['f_name'].lower() != first_name.lower() or csv_row['m_init'].lower() != middle_initial.lower() or csv_row['l_name'].lower() != last_name or csv_row['roll_s_date'].lower() != roll_signed_date:
+
+            if csv_row['f_name'] != first_name.upper() or csv_row['m_init'] != middle_initial.upper() or csv_row['l_name'] != last_name.upper() or csv_row['roll_s_date'].date() != roll_signed_date:
                 raise ValidationError("The provided roll number does not match with the other given data. Please re-enter and review carefully.")
 
         return cleaned_data
