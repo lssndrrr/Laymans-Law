@@ -11,13 +11,13 @@ def loginM(request):
     #     profile=ProfileM.objects.get(email_add=request.POST.get("email_add"))
         
     #     if profile.password == password:
-    #         #return render(request, "abugado/abugado_profile.html", {"profile": profile, })
+    #         #return render(request, "abogado/abogado_profile.html", {"profile": profile, })
     #         pass
     #     else:
     #            #return render(request, "man/sign_up.html")
     #         pass
     # except:
-    #     #return render(request, "abugado/sign_up.html")
+    #     #return render(request, "abogado/sign_up.html")
     #     pass
 
 def signupM(request):
