@@ -8,10 +8,10 @@ from django.conf import settings
 
 
 GENDER_CHOICES = (
-    ('f', 'Female'),
-    ('m', 'Male'),
-    ('nb', 'Non-Binary'),
-    ('other', 'Other/Prefer not to say')
+    ('F', 'Female'),
+    ('M', 'Male'),
+    ('NB', 'Non-Binary'),
+    ('Other', 'Other / Prefer not to say')
     )
 
 
@@ -47,7 +47,7 @@ class ARegistration(forms.ModelForm):
                 raise ValidationError("CSV file not found.")
 
             if roll_number not in df['roll_no'].values:
-                raise ValidationError("No lawyer with this roll number exists.")
+                raise ValidationError("The roll number provided does not belong to an existing lawyer.")
             
             csv_row = df[df['roll_no'] == roll_number].iloc[0]
             if csv_row['f_name'].lower() != first_name.lower() or csv_row['m_init'].lower() != middle_initial.lower() or csv_row['l_name'].lower() != last_name or csv_row['roll_s_date'].lower() != roll_signed_date:
