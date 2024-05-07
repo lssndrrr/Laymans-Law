@@ -1,36 +1,35 @@
 {%load static%}
 <!DOCTYPE html>
 <html>
+<title>Layman's Law</title>
 <head>
-    <link rel="stylesheet" href="{% static 'landing/landing_page.css'%}">
-</head>
-    <title>Layman's Law</title>
-    <body>
-        <div class="frame">
-            <div class = "redside">
-                <div class="logo">
-                    <img src="{% static 'assets/Logo.png'%}">
-                </div>
-                <div class="dark_overlay"></div>
-                <pre>
-                    Intindihin ang mga 
-                    batas.
+    <link rel="stylesheet" href="{% static 'main_output.css'%}">
 
-                    Alamin ang iyong mga 
-                    karapatan.
-                </pre>
+    <style>
+        html, body{
+            height: 100%;
+        }
+        .bg-photo{
+            background-image: url("{% static 'landing/bg.png' %}");
+            background-size: cover;
+            background-position: center;
+        }    
+        </style>
+
+</head>
+
+<body class="bg-photo">
+    <div class="flex bg-black bg-opacity-70">
+        <div class="w-1/2 h-screen bg-red-900 flex-col justify-center items-center">
+            <div class="mx-4 my-4 h-1/4 w-4/5">
+                <!-- logo -->
             </div>
-            <div class="blueside">
-                <div class="buttons">
-                    <a href="{%url 'ManggagawaLogin'%}" class="red">
-                        MANGGAGAWA AKO
-                    </a>
-    
-                    <a href="{%url 'AbugadoLogin'%}" class="blue">
-                        ABOGADO AKO
-                    </a>
-                </div>
+            <div class="mx-4 my-4 h-1/2 w-4/5">
+                <h1>Intindihin ang mga batas. </h1>
+
+                <h1>Alamin ang iyong mga karapatan.</h1>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
