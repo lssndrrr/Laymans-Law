@@ -14,21 +14,41 @@
             background-size: cover;
             background-position: center;
         }    
+        .logo-photo{
+            background-image: url("{% static 'landing/logo-landing.png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
         </style>
 
 </head>
 
 <body class="bg-photo">
     <div class="flex bg-black bg-opacity-70">
-        <div class="w-1/2 h-screen bg-red-900 flex-col justify-center items-center">
-            <div class="mx-4 my-4 h-1/4 w-4/5">
+        <div class="w-1/2 h-screen bg-red-900 flex-col justify-items-center">
+            <div class="h-1/6 w-3/5 logo-photo">
                 <!-- logo -->
             </div>
-            <div class="mx-4 my-4 h-1/2 w-4/5">
-                <h1>Intindihin ang mga batas. </h1>
+            <div class="mx-4 my-4 h-1/2 w-3/5">
+                <div>
+                    <h1>Intindihin ang mga batas. </h1>
 
-                <h1>Alamin ang iyong mga karapatan.</h1>
+                    <h1>Alamin ang iyong mga karapatan.</h1>
+                </div>
             </div>
+        </div>
+        <div class="w-1/2 flex-col">
+            <div class="flex justify-around w-4/5 h-20 items-center">
+                <a href="#" class="font-bold text-white">Home</a>
+                <a href="#" class="font-bold text-white">About</a>
+                <a href="#" class="font-bold text-white">Contacts</a>
+            </div>
+            <div class="h-1/5 w-3/5 border-black justify-center">
+                <a href="">MANGGAGAWA AKO</a>
+                <a href="">ABOGADO AKO</a>
+            </div>
+
         </div>
     </div>
 </body>
