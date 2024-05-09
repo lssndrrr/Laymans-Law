@@ -151,3 +151,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # email verification
 # captcha
 # delete unregistered users after a month
+# 2 step verification
+# about page that uses count(abogado) so it can display current number of registered and verified lawyers
