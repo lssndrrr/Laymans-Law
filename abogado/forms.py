@@ -1,4 +1,7 @@
+from msilib.schema import CustomAction
 from django import forms
+
+from authentication.models import CustomUser
 from .models import Abogado
 import pandas as pd
 from django.core.exceptions import ValidationError 
@@ -60,4 +63,16 @@ class ARegistration(forms.ModelForm):
                 raise ValidationError("The provided roll number does not match with the other given data. Please re-enter and review carefully.")
 
         return cleaned_data
+    
+class ALogin(forms.ModelForm):
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    user_type = forms.CharField(widget=forms.HiddenInput, disabled=True)
+    password = forms.CharField(required=True,
+        label="Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input'}),
+    )
+    
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'password', 'user_type')
     

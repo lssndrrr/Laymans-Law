@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import ARegistration
+from .forms import ARegistration, ALogin
 from .models import Abogado, Cases
 from authentication.forms import SignUpForm
 from authentication.models import CustomUser, CustomUserManager
@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 from django.utils.crypto import get_random_string
 import logging
+from django.contrib.auth import authenticate, login, logout, user_logged_in
 
 
 
@@ -20,23 +21,37 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 def loginA(request):
+    context = {}
     if request.method == "POST":
-        pass
-    if request.method == "GET":
-        return render(request, "abogado/lawyer_login.html")
-    try:
-        password=request.POST.get("password")
-        profile=Abogado.objects.get(email_add=request.POST.get("email_add"))
-        
-        if profile.password == password:
-            # return render(request, "abogado/abogado_profile.html", {"profile": profile, })
-            pass
+        form = ALogin(request.POST)
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+            
+        if user is not None:
+            login(request, user)
+            if request.user.is_authenticated:
+                print('i go here')
+                abogado = request.user.abogado
+                # context['roll_number'] = abogado.roll_number
+                # print(context)
+            return redirect("AProfile", abogado.roll_number)
         else:
-           # return render(request, "abogado/sign_up.html")
-            pass
-    except:
-        # return render(request, "abogado/sign_up.html")
-        pass
+            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
+            return render(request, "abogado/lawyer_login.html", {'form': form})
+    else:
+        user_type = 'abogado'
+        form = ALogin(initial={'user_type': user_type})
+    context['form'] = form
+    return render(request, "abogado/lawyer_login.html", context)
+
+
+
+def Profile(request, roll_number):
+    context = {}
+    print('i am here')
+    return render(request, "abogado/lawyer_homepage.html", context)
+    
 
 
 
@@ -55,8 +70,10 @@ def signupA(request):
             cpassword = form.cleaned_data['password2']
             
             
+            
             if password == cpassword:
                 user.set_password(password)
+                user.user_type = 'abugado'
                 user.save()
                 request.session['user_pk'] = user.pk
                 print(request.session.get('user_pk'))
@@ -90,9 +107,10 @@ def signupA(request):
                     form.add_error('password2', 'Passwords do not match.')
             except CustomUser.DoesNotExist:
                 logger.warning('form is NOT valid', form)
+                print(CustomUser)
     else:
         user_type = 'abogado'
-        form = SignUpForm(initial={'user_type': user_type})
+        form = SignUpForm()
     context['form'] = form
     return render(request, "abogado/lawyer_signup.html", context)
 
@@ -109,6 +127,7 @@ def signupA2(request):
             if user_pk:
                 user = CustomUser.objects.get(pk=user_pk)
                 abogado.abogado_acc = user
+                
                 user.registered = True
                 abogado.verified = True
                 
@@ -116,8 +135,10 @@ def signupA2(request):
                 abogado.last_name = abogado.last_name.title()
                 abogado.middle_initial = abogado.middle_initial.upper()
 
-                user.save()
                 abogado.save()
+                user.abogado = abogado
+                user.save()
+                
                 del request.session['user_pk']
                 return redirect(reverse('AbogadoLogin'))
             else:

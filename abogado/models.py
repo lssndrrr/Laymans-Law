@@ -18,7 +18,7 @@ class Abogado(models.Model):
     contact_number = models.CharField(max_length=15)
     
     ## one to one connection with customuser
-    abogado_acc = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+    abogado_acc = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='abogado_profile', primary_key=True)
     
     ## profile stuff
     verified = models.BooleanField(default=False)

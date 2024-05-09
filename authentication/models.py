@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from abogado.models import Abogado
 
 # Create your models here.
 
@@ -40,6 +41,8 @@ class CustomUser(AbstractUser):
     )
     
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
+    
+    abogado = models.OneToOneField(to=Abogado, on_delete=models.CASCADE, null=True, blank=True, related_name='user_profile', limit_choices_to={'user_type': 'abogado'})
     
     def is_lawyer(self):
         return self.user_type == 'abogado'
