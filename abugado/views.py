@@ -31,5 +31,10 @@ def signupA(request):
         return render(request, "abugado/lawyer_signup.html")
     return render(request, "abugado/lawyer_signup.html")
     
+def homepageA(request):
+    if request.method == "GET":
+        return render(request, "abugado/lawyer_homepage.html")
+    return render(request, "abugado/lawyer_homepage.html")
+
 def checkProfile(request):
     pass

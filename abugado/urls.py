@@ -6,5 +6,6 @@ urlpatterns = [
     path('createAbugado/', views.createAbugado),
     path('ALogin/', views.loginA, name="AbugadoLogin"),
     path('ASignUp/', views.signupA, name="AbugadoSignUp"),
+    path('AHomepage/', views.homepageA, name="AbugadoHomepage"),
     path('Profile/', views.checkProfile, name="Abugado Profile")
 ]

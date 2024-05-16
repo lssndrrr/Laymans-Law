@@ -1,0 +1,120 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homepage - Lawyer</title>
+
+
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'main_output.css'%}">
+    {% endcompress %}    
+
+    <style>
+        .bg-photo{
+            background-image: url("{% static 'assets/laborlaws_bg.png' %}");
+            background-size: cover;
+            background-position: center;
+        }    
+        .bg-left{
+            background-image: url("{% static 'assets/bluedark.png' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .logo-photo{
+            background-image: url("{% static 'assets/logo(1).png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .logo-profile{
+            background-image: url("{% static 'assets/profile.png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .bg-blue-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+.px-10 {
+    padding-left: 2.5rem/* 40px */;
+    padding-right: 2.5rem/* 40px */;
+}
+.py-10 {
+    padding-top: 2.5rem/* 40px */;
+    padding-bottom: 2.5rem/* 40px */;
+}
+.text-center {
+    text-align: center;
+}
+.pt-10 {
+    padding-top: 2.5rem/* 40px */;
+}
+.pb-2 {
+    padding-bottom: 0.5rem/* 8px */;
+}
+.opacity-50 {
+    opacity: 0.5;
+}
+    </style>
+</head>
+
+<body class="">
+    <div class="flex h-screen bg-photo">
+        <!-- navbar -->
+        <div class="w-1/4 h-screen bg-left flex-col">
+            <!-- profile picture and name -->
+            <div class="flex items-center justify-items-center justify-center mb-16 mt-12">
+                <div class="w-10 h-10 rounded-full logo-profile mr-3">
+                </div>                
+                <div>
+                    <h1 class="text-white font-bold text-2xl">First Name</h1>
+                    <h5 class="text-white">Last Name</h3>
+                </div>
+            </div>
+
+            <!-- navigation buttons -->
+            <div class="flex flex-col items-center justify-center w-full">
+                <button class="bg-blue-600 text-white shadow font-bold mb-4 px-4 py-2 rounded-full w-4/5">Active Cases</button>
+                <button class="bg-blue-900 text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5">Browse Cases</button>
+                <button class="bg-blue-900 text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5">Forum</button>
+                <button class="bg-blue-900 text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5">Wiki</button>
+            </div>
+        </div>
+        
+        <div class="h-full w-3/4 flex flex-col items-center justify-center">
+            <div class="h-full w-full flex flex-col items-center justify-center">
+    
+                <div class="flex w-full h-full flex-col items-center justify-center">
+                    
+                    <div class="flex flex-col w-full px-10 pt-10 pb-2 h-1/2">
+                        <h1>Hello, Name</h1>
+                        <h1 class=" font-bold text-2xl mb-4">Welcome back!</h1>
+                        <p class="text-gray-800 mb-8 break-normal">
+                            Wiki contributions: 0 <br>
+                            Total cases finished: 0 <br>
+                            Total active cases: 0 <br>
+                        </p>
+                        <p class="font-semibold text-gray-800 mb-2">Your active cases:</p>
+                    </div>
+
+                    <!-- Cases tab -->
+                    <div class="h-full w-full flex flex-col items-center justify-center overflow-y-auto">
+                        <div class="h-auto max-h-full w-full overflow-y-auto items-center justify-items-center text-center">
+                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 opacity-50">Case</button>
+                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 opacity-50">Case</button>
+                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 opacity-50">Case</button>
+                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 opacity-50">Case</button>
+                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 opacity-50">Case</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
