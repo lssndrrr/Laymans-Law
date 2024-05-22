@@ -2,47 +2,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'abogado/lawyer_login.css'%}">
+        <link rel="stylesheet" href="{% static 'output.css'%}">
+        <title>Log In</title>
+        <style>
+            .bg-custom{
+                background-image: url("{% static 'assets/blue_bg.png'%}");
+            }
+            .darkoverlay{
+                background-color:  black;
+                opacity: 0.7;
+            }
+            .form-inputs{
+                width: 100%;
+                height: 100%;
+                border-radius: 15px;
+            }
+        </style>
     </head>
-    <title>Log In</title>
-    <body>
-        <div class="landing-page">
-            <div class="SideCoverManggagawa">
-                <img class="BlueBg" src="{% static 'assets/blue_bg.png'%}";/>
-                <div class="DarkTexture"></div>
-                <div class="Logo">
-                    <img src="{% static 'assets/Logo.png'%}"/>
-                </div>
-            </div>
+    
+    <body class="min-h-screen w-full flex items-center bg-custom">
             
-            <form method="POST">
-                {% csrf_token %}
-                <h1>Log in</h1>
-                {{ form.non_field_errors }}
-                <div class="form-group">
-                    {{ form.email.label_tag }}
-                    {{ form.email }}
-                    {{ form.email.errors }}
-                </div>
-                <div class="form-group">
-                    {{ form.user_type }}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label_tag }}
-                    <div class="input-group">
-                        {{ form.password }}
+            <div class="flex justify-center items-center bg-blue-900 w-1/2 h-screen">
+                <form method="POST" class="flex flex-col justify-center items-center flex-grow p-5">
+                    {% csrf_token %}
+                    <h1 class="text-white text-4xl font-bold mb-16">
+                        Log in
+                    </h1>
+                    {{ form.non_field_errors }}
+                    <div class="w-3/5 h-10 m-3">
+                        {{ form.email }}
+                        {{ form.email.errors }}
                     </div>
-                    {{ form.password1.errors }}
-                </div>
-                <button type="submit">
-                    Log in
-                </button>
+                    <div>
+                        {{ form.user_type }}
+                    </div>
+                    <div class="w-3/5 m-3 h-10">
+                        {{ form.password }}
+                        {{ form.password1.errors }}
+                    </div>
+                    <button type="submit" class="bg-blue-950 text-white mb-16 w-1/3 h-10 m-8 rounded-2xl hover:bg-blue-600 hover:scale-105">
+                        Submit
+                    </button>
 
-                <div class="signup">
-                    <h2>Don't have an account?</h2>
-                    <a href="{%url 'AbogadoSignUp'%}">Sign Up</a>
-                </div>
-            </form>
-        </div>
+                    <h2 class="text-white hover:underline">Don't have an account?</h2>
+                    <a href="{%url 'AbogadoSignUp'%}" class="text-white hover:underline ">Sign Up</a>
+                  
+                </form>
+            </div>
+
+            <div class="h-screen flex-grow flex justify-center items-center darkoverlay">
+                <img src="{% static 'assets/Logo.png'%}" class="w-3/5" alt=":["/>
+            </div>
     </body>
 </html>
