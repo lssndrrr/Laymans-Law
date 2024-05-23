@@ -54,7 +54,10 @@ def Profile(request, roll_number):
     
 
 
-
+def homepageA(request):
+    if request.method == "GET":
+        return render(request, "abogado/lawyer_homepage-obs.html")
+    return render(request, "abogado/lawyer_homepage-obs.html")
 
 def signupA(request):
     context = {}
@@ -112,7 +115,7 @@ def signupA(request):
         user_type = 'abogado'
         form = SignUpForm()
     context['form'] = form
-    return render(request, "abogado/lawyer_signup.html", context)
+    return render(request, "abogado/lawyer_signup2.html", context)
 
 
 

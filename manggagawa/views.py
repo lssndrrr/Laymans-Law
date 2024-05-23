@@ -21,4 +21,4 @@ def loginM(request):
     #     pass
 
 def signupM(request):
-    return render(request, "manggagawa/laymen_signup.html")
+    return render(request, "manggagawa/laymen_signup2.html")
