@@ -1,13 +1,14 @@
 {%load static%}
+{% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sign Up - Lawyer</title>
+    <title>Sign Up - Manggagawa</title>
 
-    <link rel="stylesheet" href="{% static 'main_output.css'%}">
+    <link rel="stylesheet" href="{% static 'output.css'%}">
 
     <style>
         .bg-photo{
@@ -20,6 +21,15 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+        }
+        .form-control{
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 16px;
+            width: 240px;
+            /* box-shadow: 1px 1px 1px black; */
         }
     </style>
 

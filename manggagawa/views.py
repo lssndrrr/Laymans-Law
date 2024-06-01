@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Manggagawa
 
+
 # Create your views here.
 
 def loginM(request):
