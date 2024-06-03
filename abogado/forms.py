@@ -1,4 +1,3 @@
-from msilib.schema import CustomAction
 from django import forms
 
 from authentication.models import CustomUser

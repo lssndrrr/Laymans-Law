@@ -11,6 +11,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.utils.crypto import get_random_string
 import logging
 from django.contrib.auth import authenticate, login, logout, user_logged_in
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,42 +20,6 @@ logger = logging.getLogger(__name__)
 
 
 # Create your views here.
-
-def loginA(request):
-    context = {}
-    if request.method == "POST":
-        form = ALogin(request.POST)
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-            
-        if user is not None:
-            login(request, user)
-            if request.user.is_authenticated:
-                print('i go here')
-                abogado = request.user.abogado
-                # context['roll_number'] = abogado.roll_number
-                # print(context)
-            return redirect("AProfile", abogado.roll_number)
-        else:
-            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-            return render(request, "abogado/lawyer_login.html", {'form': form})
-    else:
-        user_type = 'abogado'
-        form = ALogin(initial={'user_type': user_type})
-    context['form'] = form
-    return render(request, "abogado/lawyer_login.html", context)
-
-
-
-def Profile(request, roll_number):
-    context = {}
-    print('i am here')
-    return render(request, "abogado/lawyer_homepage.html", context)
-    
-
-
-
 
 def signupA(request):
     context = {}
@@ -73,7 +38,7 @@ def signupA(request):
             
             if password == cpassword:
                 user.set_password(password)
-                user.user_type = 'abugado'
+                user.user_type = 'abogado'
                 user.save()
                 request.session['user_pk'] = user.pk
                 print(request.session.get('user_pk'))
@@ -85,7 +50,7 @@ def signupA(request):
                 return redirect(signupA2url)
         else:
             try:
-                user = CustomUser.objects.get(email=form.data.get('email'), registered=False)
+                user = CustomUser.objects.get(email=form.data.get('email'), registered=False, user_type='abogado')
                 password = form.data.get('password1')
                 cpassword = form.data.get('password2')
                 try:
@@ -153,6 +118,42 @@ def signupA2(request):
         return render(request, "abogado/lawyer_signup_cont.html", context)
     else:
         return redirect(reverse('AbogadoSignUp'))
+
+def loginA(request):
+    context = {}
+    if request.method == "POST":
+        form = ALogin(request.POST)
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)
+            
+        if user is not None:
+            login(request, user)
+            if request.user.is_authenticated:
+                print('i go here')
+                abogado = request.user.abogado
+                # context['roll_number'] = abogado.roll_number
+                # print(context)
+            return redirect("AProfile", abogado.roll_number)
+        else:
+            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
+            return render(request, "abogado/lawyer_login.html", {'form': form})
+    else:
+        user_type = 'abogado'
+        form = ALogin(initial={'user_type': user_type})
+    context['form'] = form
+    return render(request, "abogado/lawyer_login.html", context)
+
+
+
+
     
-def checkProfile(request):
+@login_required
+def Profile(request, roll_number):
+    context = {}
+    print('i am here')
+    return render(request, "abogado/lawyer_profile.html", context)
+
+@login_required
+def Wiki(request):
     pass
