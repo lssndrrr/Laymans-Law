@@ -21,48 +21,6 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-<<<<<<< HEAD
-=======
-def loginA(request):
-    context = {}
-    if request.method == "POST":
-        form = ALogin(request.POST)
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-            
-        if user is not None:
-            login(request, user)
-            if request.user.is_authenticated:
-                print('i go here')
-                abogado = request.user.abogado
-                # context['roll_number'] = abogado.roll_number
-                # print(context)
-            return redirect("AProfile", abogado.roll_number)
-        else:
-            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-            return render(request, "abogado/lawyer_login.html", {'form': form})
-    else:
-        user_type = 'abogado'
-        form = ALogin(initial={'user_type': user_type})
-    context['form'] = form
-    return render(request, "abogado/lawyer_login.html", context)
-
-
-
-def Profile(request, roll_number):
-    context = {}
-    print('i am here')
-    return render(request, "abogado/lawyer_homepage.html", context)
-    
-
-
-def homepageA(request):
-    if request.method == "GET":
-        return render(request, "abogado/lawyer_homepage-obs.html")
-    return render(request, "abogado/lawyer_homepage-obs.html")
-
->>>>>>> 10d3b41862014429d24a7c033211342c1e272da1
 def signupA(request):
     context = {}
     if request.method == "POST":
