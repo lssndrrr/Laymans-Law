@@ -21,28 +21,6 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-def loginA(request):
-    if request.method == "POST":
-        pass
-    if request.method == "GET":
-        return render(request, "abogado/lawyer_login.html")
-    try:
-        password=request.POST.get("password")
-        profile=Abogado.objects.get(email_add=request.POST.get("email_add"))
-        
-        if profile.password == password:
-            # return render(request, "abogado/abogado_profile.html", {"profile": profile, })
-            pass
-        else:
-           # return render(request, "abogado/sign_up.html")
-            pass
-    except:
-        # return render(request, "abogado/sign_up.html")
-        pass
-
-
-
-
 def signupA(request):
     context = {}
     if request.method == "POST":
@@ -101,7 +79,6 @@ def signupA(request):
         form = SignUpForm(initial={'user_type': user_type})
     context['form'] = form
     return render(request, "abogado/lawyer_signup2.html", context)
-    return render(request, "abogado/lawyer_signup.html", context)
 
 
 
@@ -135,7 +112,7 @@ def signupA2(request):
         else:
             logger.warning('form2 is not valid')
             return render(request, "abogado/lawyer_signup_cont.html", {'form': form})
-    elif request.GET.get('from') == 'AbogadoSignUp' and request.GET.get('token') == request.session.get('token'):
+    elif (request.GET.get('from') == 'AbogadoSignUp' or request.GET.get('from') == 'LogIn') and request.GET.get('token') == request.session.get('token'):
         del request.session['token']
         form = ARegistration()
         context['form'] = form
@@ -152,6 +129,12 @@ def loginA(request):
         user = authenticate(request, email=email, password=password)
             
         if user is not None:
+            if user.registered == False:
+                 request.session['user_pk'] = user.pk
+                 token = get_random_string(length=32)
+                 signupA2url = reverse('AbogadoSignUp2') + f'?from=LogIn&token={token}'
+                 request.session['token'] = token
+                 return redirect(signupA2url)
             login(request, user)
             if request.user.is_authenticated:
                 print('i go here')
@@ -176,7 +159,7 @@ def loginA(request):
 def Profile(request, roll_number):
     context = {}
     print('i am here')
-    return render(request, "abogado/lawyer_profile.html", context)
+    return render(request, "abogado/lawyer_homepage-obs.html", context)
 
 @login_required
 def Wiki(request):
