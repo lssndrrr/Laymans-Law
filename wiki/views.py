@@ -7,3 +7,9 @@ from django.http import HttpResponse
 def lawList(request):
     laws = Law.objects.all()
     return render(request, "wiki/laborlaws.html", {"laws": laws})
+
+def prelimW(request):
+    if request.method == "GET":
+        return render(request, "wiki/wiki-prelim.html")
+    return render(request, "wiki/wiki-prelim.html")
+

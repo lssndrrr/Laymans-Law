@@ -64,11 +64,11 @@ class ARegistration(forms.ModelForm):
         return cleaned_data
     
 class ALogin(forms.ModelForm):
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-inputs','placeholder':'Email'}))
     user_type = forms.CharField(widget=forms.HiddenInput, disabled=True)
     password = forms.CharField(required=True,
         label="Password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-inputs', 'id': 'password-input','placeholder':'Password'}),
     )
     
     class Meta:

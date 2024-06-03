@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LCP - Preliminary Title</title>
+
+    <link rel="stylesheet" href="{% static 'output.css'%}">
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px; /* Set the width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* Set the background color of the scrollbar track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #888; /* Set the color of the scrollbar thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Change the color of the scrollbar thumb on hover */
+        }
+        .bg-photo{
+            background-image: url("{% static 'assets/wikibg.png' %}");
+            background-size: cover;
+            /* background-position: center; */
+            background-repeat: no-repeat;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .logo-photo{
+            background-image: url("{% static 'assets/logo(1).png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .logo-profile{
+            background-image: url("{% static 'assets/prof2.png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .bg-white-overlay {
+            background-color: rgba(255, 255, 255, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .content-container {
+            position: relative;
+            /* height: calc(100% - 96px); Adjust based on your navbar height */
+            overflow-y: auto;
+            margin-top: 86px; /* Adjust based on your navbar height */
+            /* padding: 1rem; */
+        }
+
+.w-20 {
+    width: 5rem/* 80px */;
+}
+.m-6 {
+    margin: 1.5rem/* 24px */;
+}
+.p-6 {
+    padding: 1.5rem/* 24px */;
+}
+.font-extrabold {
+    font-weight: 800;
+}
+.fixed {
+    position: fixed;
+}
+.pt-24 {
+    padding-top: 6rem/* 96px */;
+}
+.ml-14 {
+    margin-left: 3.5rem/* 56px */;
+}
+.flex-grow {
+    flex-grow: 1;
+}
+    </style>
+</head>
+<body class="h-screen bg-photo">
+    <div class="h-screen bg-white bg-opacity-80">
+        <header class="bg-black bg-opacity-80 fixed top-0 w-full z-20">
+            <nav class="flex justify-between items-center p-6">
+                <a href="/abogado/AHomepage"><div class="logo-photo h-10 w-20"></div></a>
+                <div>
+                    <h1 class="text-white font-bold">LABOR CODE OF THE PHILIPPINES</h1>
+                </div>
+                <div>
+                    <a class="text-white" href="#">
+                        <div class="logo-profile h-6 w-6 ml-14"></div>
+                    </a>
+                </div>
+            </nav>
+        </header>
+    
+        <main class="content-container">
+            <div class="h-screen flex flex-col items-center">
+                <h1 class="m-6 font-bold">PRELIMINARY TITLE</h1>
+                <h2>CHAPTER I</h2>
+                <h2 class="">GENERAL PROVISIONS</h2>
+                <br>
+                <p class="w-1/2">
+                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
+                    <br>
+                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
+                    <br>
+                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
+                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
+                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                    <br>
+                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
+                    <br>
+                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
+                    <br>
+                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
+                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
+                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                    <br>
+                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
+                    <br>
+                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
+                    <br>
+                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
+                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
+                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                    <br>
+                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
+                    <br>
+                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
+                    <br>
+                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
+                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
+                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

@@ -18,9 +18,11 @@ from django.contrib.auth.hashers import check_password
 
 logger = logging.getLogger(__name__)
 
+
 # Create your views here.
 
 def signupM(request):
+<<<<<<< HEAD
     context = {}
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -160,3 +162,6 @@ def loginM(request):
         form = MLogin(initial={'user_type': user_type})
     context['form'] = form
     return render(request, "manggagawa/laymen_login.html", context)
+=======
+    return render(request, "manggagawa/laymen_signup2.html")
+>>>>>>> 10d3b41862014429d24a7c033211342c1e272da1

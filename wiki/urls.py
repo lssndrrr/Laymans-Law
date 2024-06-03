@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.lawList, name="wiki"),
+    path('WPrelim/', views.prelimW, name="WikiPrelim"),
     # path("laws/", views.lawList, name="laws")
  ]
