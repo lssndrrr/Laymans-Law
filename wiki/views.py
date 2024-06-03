@@ -12,3 +12,4 @@ def prelimW(request):
     if request.method == "GET":
         return render(request, "wiki/wiki-prelim.html")
     return render(request, "wiki/wiki-prelim.html")
+

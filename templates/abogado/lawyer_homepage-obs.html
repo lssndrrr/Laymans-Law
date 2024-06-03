@@ -80,6 +80,12 @@
             background-repeat: no-repeat;
             background-position: center;
         }
+        .logo-settings{
+            background-image: url("{% static 'assets/GEAR.png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
  
     </style>
 </head>
@@ -100,22 +106,26 @@
 
             <!-- navigation buttons -->
             <div class="flex flex-col items-center justify-center w-full">
-                <button class="bg-bloo2 text-white shadow font-bold mb-4 px-4 py-2 rounded-full w-4/5 flex items-baseline">
+                <a class="bg-bloo2 text-white shadow font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
-                    Submitted Cases
-                </button>
-                <button class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5 flex items-baseline">
+                    Active Cases
+                </a>
+                <a class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-browse mr-8 inline-block"></div>
                     Browse Cases
-                </button>
-                <button class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5 flex items-baseline">
+                </a>
+                <a class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-forum mr-8 inline-block"></div>
                     Forum
-                </button>
-                <button class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-4/5 flex items-baseline">
+                </a>
+                <a href="/wiki/WPrelim" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Wiki
-                </button>
+                </a>
+                <a href="/authentication/SPassword" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4">
+                    <div class="h-6 w-6 logo-settings mr-8 inline-block"></div>
+                    Settings
+                </a>
             </div>
         </div>
         
