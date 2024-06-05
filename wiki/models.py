@@ -31,13 +31,13 @@ class TranslationInfo(models.Model):
     abogado = models.OneToOneField(to=Abogado, on_delete=models.CASCADE)
     
 class TranslationVerified(models.Model):
-    translation_id = models.ManyToManyField(to=Translations, on_delete=models.CASCADE)
-    abogado = models.ManyToManyField(to=Abogado, on_delete=models.CASCADE) # unsure
+    translation_id = models.ManyToManyField(to=Translations)
+    abogado = models.ManyToManyField(to=Abogado) # unsure
     verify_date = models.DateField(auto_now_add=True)
 
 
 class Summarizations(models.Model):
-    summary_id = models.AutoField()
+    summary_id = models.AutoField(primary_key=True)
     law = models.ForeignKey(to=Law, on_delete=models.CASCADE)
     def __str__(self):
         return self.Summary
@@ -49,7 +49,7 @@ class SummaryInfo(models.Model):
     summary_id = models.OneToOneField(to=Summarizations, on_delete=models.CASCADE)
     
 class SummaryVerified(models.Model):
-    summary_id = models.ManyToManyField(to=Summarizations, on_delete=models.CASCADE)
-    abogado = models.ManyToManyField(to=Abogado, on_delete=models.CASCADE) # unsure
+    summary_id = models.ManyToManyField(to=Summarizations)
+    abogado = models.ManyToManyField(to=Abogado) # unsure
     verify_date = models.DateField(auto_now_add=True)
 
