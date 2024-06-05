@@ -100,7 +100,7 @@
                 </div>                
                 <div>
                     <h1 class="text-white font-bold text-xl">{{user.abogado.first_name}} </h1>
-                    <h5 class="text-white"> {{ user.abogado.last_name}} </h3>
+                    <h5 class="text-white"> {{ user.abogado.last_name}} </h5>
                 </div>
             </div>
 
@@ -122,7 +122,7 @@
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Wiki
                 </a>
-                <a href="/authentication/SPasswordAB" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'SettingsA' roll_number=user.abogado.roll_number %}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4">
                     <div class="h-6 w-6 logo-settings mr-8 inline-block"></div>
                     Settings
                 </a>
