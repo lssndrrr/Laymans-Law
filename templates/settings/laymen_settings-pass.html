@@ -85,7 +85,19 @@
         background-repeat: no-repeat;
         background-position: center;
     }
-    
+    .logo-dp{
+        background-image: url("{% static 'assets/arrowdown.svg' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .transition-transform {
+        transition: transform 0.3s ease;
+    }
+
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
     .logout{
         background-color: rgb(180, 112, 112);
         color: rgb(255, 228, 228);
@@ -101,6 +113,7 @@
         background-color: rgb(143, 56, 56);
         
     }
+ 
     </style>
 </head>
 
@@ -113,30 +126,30 @@
                 <div class="w-20 h-20 rounded-full logo-profile mr-3">
                 </div>                
                 <div>
-                    <h1 class="text-white font-bold text-xl">First Name</h1>
-                    <h5 class="text-white">Last Name</h3>
+                    <h1 class="text-white font-bold text-xl">{{user.abogado.first_name}}</h1>
+                    <h5 class="text-white">{{user.abogado.last_name}}</h3>
                 </div>
             </div>
 
             <!-- navigation buttons -->
             <div class="flex flex-col items-center justify-center w-full">
-                <a href="/manggagawa/MHomepage" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'AProfile' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
-                    Submitted Cases
+                    Active Cases
                 </a>
-                <a href="/manggagawa/MSubmitcase" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'BrowseCases' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-browse mr-8 inline-block"></div>
-                    Submit a Case
+                    Browse Cases
                 </a>
                 <!-- <a href="#" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Forum
                 </a> -->
-                <a href="/wiki/WPrelim" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'Wiki'%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Wiki
                 </a>
-                <a href="/authentication/SPasswordMG" class="bg-bloo2 text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="#" class="bg-bloo2 text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-settings mr-8 inline-block"></div>
                     Settings
                 </a>
@@ -148,44 +161,101 @@
     
                 <div class="flex w-full h-full flex-col items-center justify-center">
                     
-                    <div class="flex flex-col w-full h-1/4 px-20 justify-center">
-                        <h1 class=" font-bold text-4xl">Settings</h1>
+                    <div class="flex w-full h-1/5 px-20 items-center justify-start">
+                        <h1 class="font-bold text-2xl">Settings</h1>
                     </div>
 
                     <!-- Cases tab -->
                     <div class="h-full w-full flex justify-center">
-                        <div class="flex h-3/4 items-start pt-3 mr-10 ">
+                        <div class="flex h-3/4 items-start mr-10 ">
                             <ul class="">
                                 <!-- <li class="mb-4">General</li> -->
-                                <li class="mb-4 font-bold"><a href="/authentication/SPasswordMG">Password</a></li>
-                                <li class="mb-4"><a href="/authentication/SAccountMG">Account</a></li>
+                                <li class="mb-4 font-bold"><a href="/authentication/SPasswordAB">Account</a></li>
+                                <li class="mb-4"><a href="">Profile</a></li>
                             </ul>
                         </div>
-                        <div class="h-3/4 w-3/4 bg-set text-black rounded-2xl shadow-lg flex flex-col p-10">
-                            <div class="mb-8 font-bold">Change Password</div>
-                            <div class="flex flex-col mb-5">
-                                Current Password:
-                                <input type="password" class="w-1/3 mt-2 rounded-lg shadow-inner p-1">
+                        <div class="h-3/4 w-3/4 text-black rounded-2xl flex flex-col px-10">
+
+                            <div class="relative" id="dropdownpassbutton">
+                                <div onclick="toggleDropdownPassword()" class="bg-red-950 text-white rounded-xl p-4 mb-2 font-bold flex justify-between hover:cursor-pointer">
+                                    <p>Change Password</p>
+                                    <div id="arrow-pass" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
+                                </div>
+                                
+                                <div id="dropdownpass" class="bg-gray-200 rounded-xl p-6 mb-4 hidden">
+                                    {{pwform.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col mb-2 text-sm">
+                                            Current Password:
+                                            {{pwform.current_password}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            New Password:
+                                            {{pwform.new_password1}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Retype New Password:
+                                            {{pwform.new_password2}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="mr-8" type="reset">Cancel</button>
+                                            <button class="bg-red-900 text-white font-semibold p-2 rounded-lg shadow-md text-sm" type="submit">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="flex flex-col">
-                                New Password:
-                                <input type="password" class="w-1/3 mt-2 rounded-lg shadow-inner p-1">
-                            </div>
-                            <div class="flex justify-end items-center mt-auto">
-                                <button class="mr-8">Cancel</button>
-                                <button class="bg-bloo text-white font-bold p-3 rounded-xl shadow-md">Save Changes</button>
+
+                            <div class="relative" id="dropdowndeletebutton">
+                                <div onclick="toggleDropdownDelete()" class="bg-red-950 text-white rounded-xl p-4 mb-2 font-bold flex justify-between hover:cursor-pointer">
+                                    Delete Account
+                                    <div id="arrow-delete" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
+                                </div>
+                                
+                                <div id="dropdowndelete" class="bg-gray-200 rounded-xl p-6 hidden">
+                                    {{delform.current_password.errors}}
+                                    {{delform.new_password1.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Enter Password:
+                                            {{delform.current_password}}
+                                        </div>
+                                        <div class="flex mb-4">
+                                            {{delform.confirm}}
+                                            {{delform.confirm.label}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="bg-red-800 text-white p-2 rounded-lg shadow-md font-bold text-sm" type="submit">Delete my account</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <form action="{% url 'ManggagawaLogout' %}" method="post" class="w-full">
+                    <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
                         {% csrf_token %}
-                        <button type="submit" class="logout">Log out</button>
+                        <button type="submit">Logout</button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function toggleDropdownPassword(){
+            let dropdownpass = document.querySelector('#dropdownpassbutton #dropdownpass');
+            let arrowPass = document.querySelector('#arrow-pass');
+            dropdownpass.classList.toggle("hidden");
+            arrowPass.classList.toggle("rotate-180");
+        }
+        function toggleDropdownDelete(){
+            let dropdowndelete = document.querySelector('#dropdowndeletebutton #dropdowndelete');
+            let arrowDelete = document.querySelector('#arrow-delete');
+
+            dropdowndelete.classList.toggle("hidden");
+            arrowDelete.classList.toggle("rotate-180");
+        }
+    </script>
 </body>
 </html>

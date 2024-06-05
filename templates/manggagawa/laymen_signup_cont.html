@@ -1,133 +1,130 @@
-{% load static %}
-
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+
+    <title>Sign Up - Manggagawa</title>
+
+    <link rel="stylesheet" href="{% static 'output.css'%}">
+
     <style>
-        
-
-        .custom-bg{
+        .bg-photo{
             background-image: url("{% static 'assets/reddark.png' %}");
+            background-size: cover;
+            background-position: center;
+        }    
+        .logo-photo{
+            background-image: url("{% static 'assets/logo(1).png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
-
-        /* General container styling */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            margin-top: 100px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        /* Heading styling */
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* Form control styling */
         .form-control {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px 0;
-            display: block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 16px;
+            width: 240px;
         }
 
         /* Form group styling */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 0.5rem;
         }
 
         /* Button styling */
         .btn {
             display: block;
-            width: 100%;
-            background-color: #007bff;
+            /* width: 50%; */
+            background-color: rgb(69 10 10);
             color: white;
-            padding: 10px 20px;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 16px;
             cursor: pointer;
             text-align: center;
+            margin-top: 1rem;
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: rgb(111, 17, 17);
         }
 
         /* Error message styling */
         .form-group .errorlist {
             color: red;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         /* Label styling */
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
+            color:white;
         }
-
     </style>
+
 </head>
-<body class="custom-bg">
-    <div class="container ">
-        <h2>Sign Up</h2>
-        <form method="post">
+<body class="">
+    <div class="flex h-screen">
+      
+      <div class="w-1/2 bg-photo flex flex-col items-center justify-center">
+        <div class="h-1/6 w-3/5 logo-photo"></div>
+      </div>
+      
+      <div class="w-1/2 h-screen bg-red-800 flex flex-col items-center justify-center">
+          <form class="flex flex-col items-center justify-center" method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors }}
+
+              <h1 class="mb-4 text-white text-2xl font-bold">Sign up</h1>
+              <div class="block mb-2"></div>
+              {{ form.non_field_errors }}
             <div class="form-group">
-                {{ form.first_name.label_tag }}
+                <!-- {{ form.first_name.label_tag }} -->
                 {{ form.first_name }}
                 {{ form.first_name.errors }}
             </div>
             <div class="form-group">
-                {{ form.last_name.label_tag }}
+                <!-- {{ form.last_name.label_tag }} -->
                 {{ form.last_name }}
                 {{ form.last_name.errors }}
             </div>
             <div class="form-group">
-                {{ form.middle_initial.label_tag }}
+                <!-- {{ form.middle_initial.label_tag }} -->
                 {{ form.middle_initial }}
                 {{ form.middle_initial.errors }}
             </div>
             <div class="form-group">
-                {{ form.birth_date.label_tag }}
+                <!-- {{ form.birth_date.label_tag }} -->
                 {{ form.birth_date }}
                 {{ form.birth_date.errors }}
             </div>
             <div class="form-group">
-                {{ form.gender.label_tag }}
+                <!-- {{ form.gender.label_tag }} -->
                 {{ form.gender }}
                 {{ form.gender.errors }}
             </div>
             <div class="form-group">
-                {{ form.roll_number.label_tag }}
-                {{ form.roll_number }}
-                {{ form.roll_number.errors }}
+                <!-- {{ form.roll_number.label_tag }} -->
+                {{ form.trabaho }}
             </div>
             <div class="form-group">
-                {{ form.roll_signed_date.label_tag }}
-                {{ form.roll_signed_date }}
-                {{ form.roll_signed_date.errors }}
-            </div>
-            <div class="form-group">
-                {{ form.contact_number.label_tag }}
+                <!-- {{ form.contact_number.label_tag }} -->
                 {{ form.contact_number }}
                 {{ form.contact_number.errors }}
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+              </div>
+          </form>
+      </div>
     </div>
 </body>
 </html>
