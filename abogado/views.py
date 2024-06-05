@@ -130,20 +130,20 @@ def loginA(request):
         form = ALogin(request.POST)
         email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
+        try:
+            user = authenticate(request, email=email, password=password)
+        except ValidationError as e:
+            form.add_error('password', e)
+            return render(request, 'abogado/lawyer_login.html', {'form': form})
             
         if user is not None and user.registered == True:
-
-            if user is not None:
-                login(request, user)
-                if request.user.is_authenticated:
-                    abogado = request.user.abogado
-                    # context['roll_number'] = abogado.roll_number
-                    # print(context)
-                return redirect("AProfile", abogado.roll_number)
-            else:
-                form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-                return render(request, "abogado/lawyer_login.html", {'form': form})
+            login(request, user)
+            if request.user.is_authenticated:
+                abogado = request.user.abogado
+                # context['roll_number'] = abogado.roll_number
+                # print(context)
+            return redirect("AProfile", abogado.roll_number)
+            
         else:
             try:
                 user = CustomUser.objects.get(email=form.data.get('email'), registered=False)
