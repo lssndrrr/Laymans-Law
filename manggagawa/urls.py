@@ -9,4 +9,6 @@ urlpatterns = [
     path('registration/', views.signupM2, name="ManggagawaSignUp2"),
     path('profile/<int:m_id>/', views.ProfileM, name="MProfile"),
     #path('Profile/', views.checkProfile, name="Abogado Profile")
+
+    path('logout/', views.Logout, name="ManggagawaLogout"),
 ]

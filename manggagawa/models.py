@@ -29,7 +29,7 @@ class Manggagawa(models.Model):
     last_name = models.CharField(max_length=200)
     middle_initial = models.CharField(max_length=4)
     birth_date = models.DateField(validators=[validate_age])
-    gender = models.CharField(max_length=2)
+    gender = models.CharField(max_length=20)
     contact_number = models.CharField(max_length=12)
     trabaho = models.CharField(max_length=200)
     

@@ -98,6 +98,21 @@
     .rotate-180 {
         transform: rotate(180deg);
     }
+    .logout{
+        background-color: rgb(180, 112, 112);
+        color: rgb(255, 228, 228);
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-left: 16vw;
+        margin-bottom: 30px;
+    }
+    .logout:hover{
+        background-color: rgb(143, 56, 56);
+        
+    }
  
     </style>
 </head>
@@ -111,18 +126,18 @@
                 <div class="w-20 h-20 rounded-full logo-profile mr-3">
                 </div>                
                 <div>
-                    <h1 class="text-white font-bold text-xl">First Name</h1>
-                    <h5 class="text-white">Last Name</h3>
+                    <h1 class="text-white font-bold text-xl">{{user.abogado.first_name}}</h1>
+                    <h5 class="text-white">{{user.abogado.last_name}}</h3>
                 </div>
             </div>
 
             <!-- navigation buttons -->
             <div class="flex flex-col items-center justify-center w-full">
-                <a href="/abogado/AHomepage" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'AProfile' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
                     Active Cases
                 </a>
-                <a href="#" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'BrowseCases' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-browse mr-8 inline-block"></div>
                     Browse Cases
                 </a>
@@ -130,11 +145,11 @@
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Forum
                 </a> -->
-                <a href="/wiki/WPrelim" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'Wiki'%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Wiki
                 </a>
-                <a href="/authentication/SPasswordAB" class="bg-bloo2 text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="#" class="bg-bloo2 text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-settings mr-8 inline-block"></div>
                     Settings
                 </a>
@@ -163,27 +178,31 @@
 
                             <div class="relative" id="dropdownpassbutton">
                                 <div onclick="toggleDropdownPassword()" class="bg-blue-950 text-white rounded-xl p-4 mb-2 font-bold flex justify-between hover:cursor-pointer">
-                                    Change Password
+                                    <p>Change Password</p>
                                     <div id="arrow-pass" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
                                 </div>
                                 
                                 <div id="dropdownpass" class="bg-gray-200 rounded-xl p-6 mb-4 hidden">
-                                    <div class="flex flex-col mb-2 text-sm">
-                                        Current Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex flex-col text-sm mb-4">
-                                        New Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex flex-col text-sm mb-4">
-                                        Retype New Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex justify-end items-center mt-auto">
-                                        <button class="mr-8">Cancel</button>
-                                        <button class="bg-blue-900 text-white font-semibold p-2 rounded-lg shadow-md text-sm">Save Changes</button>
-                                    </div>
+                                    {{pwform.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col mb-2 text-sm">
+                                            Current Password:
+                                            {{pwform.current_password}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            New Password:
+                                            {{pwform.new_password1}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Retype New Password:
+                                            {{pwform.new_password2}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="mr-8" type="reset">Cancel</button>
+                                            <button class="bg-blue-900 text-white font-semibold p-2 rounded-lg shadow-md text-sm" type="submit">Save Changes</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -193,22 +212,32 @@
                                     <div id="arrow-delete" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
                                 </div>
                                 
-                                <div id="dropdowndelete" class= "bg-gray-200 rounded-xl p-6 hidden">
-                                    <div class="flex flex-col text-sm mb-4">
-                                        Enter Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div  class="flex mb-4">
-                                        <input type="checkbox" id="confirm" class="w-4 rounded-lg mr-2">
-                                        <label for="confirm" class="text-sm"> I understand the consequences.</label>
-                                    </div>
-                                    <div class="flex justify-end items-center mt-auto">
-                                        <button class="bg-red-800 text-white p-2 rounded-lg shadow-md font-bold text-sm">Delete my account</button>
-                                    </div>
+                                <div id="dropdowndelete" class="bg-gray-200 rounded-xl p-6 hidden">
+                                    {{delform.current_password.errors}}
+                                    {{delform.new_password1.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Enter Password:
+                                            {{delform.current_password}}
+                                        </div>
+                                        <div class="flex mb-4">
+                                            {{delform.confirm}}
+                                            {{delform.confirm.label}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="bg-red-800 text-white p-2 rounded-lg shadow-md font-bold text-sm" type="submit">Delete my account</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -226,7 +255,6 @@
 
             dropdowndelete.classList.toggle("hidden");
             arrowDelete.classList.toggle("rotate-180");
-
         }
     </script>
 </body>

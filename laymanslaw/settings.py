@@ -81,6 +81,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'laymanslaw.wsgi.application'
 
+LOGIN_URLS = (
+    '',
+    'abogado/login/',
+    'manggagawa/login',
+)
+
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
