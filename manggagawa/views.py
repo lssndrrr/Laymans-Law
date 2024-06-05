@@ -174,16 +174,19 @@ def ProfileM(request, m_id):
 def Wiki(request):
     pass
     
+
 @login_required
-def ASettings(request, m_id):
+def Submit(request, m_id):
     context = {}
     if request.method == "POST":
         pass
     else:
-        return render(request, "settings/settings.html", context)
-
-def submitcaseM(request):
-    return render(request, "manggagawa/laymen_submitcase.html")
+        return render(request, "manggagawa/laymen_submitcase.html", context)
+    
+@login_required
+def MSettings(request, m_id):
+    context = {}
+    return render(request, "manggagawa/laymen_submitcase.html", context)
 
 
 @login_required

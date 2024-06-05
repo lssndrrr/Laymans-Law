@@ -99,14 +99,14 @@
                 <div class="w-20 h-20 rounded-full logo-profile mr-3">
                 </div>                
                 <div>
-                    <h1 class="text-white font-bold text-xl">First Name</h1>
-                    <h5 class="text-white">Last Name</h3>
+                    <h1 class="text-white font-bold text-xl">{{user.manggagawa.last_name}}</h1>
+                    <h5 class="text-white">{{user.manggagawa.last_name}}</h5>
                 </div>
             </div>
 
             <!-- navigation buttons -->
             <div class="flex flex-col items-center justify-center w-full">
-                <a href="/manggagawa/MHomepage" class="bg-bloo text-white shadow font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'MProfile' m_id=user.manggagawa.m_id%}" class="bg-bloo text-white shadow font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
                     Submitted Cases
                 </a>
@@ -118,7 +118,7 @@
                     <div class="h-6 w-6 logo-forum mr-8 inline-block"></div>
                     Forum
                 </a> -->
-                <a href="/wiki/WPrelim" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'Wiki'%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
                     Wiki
                 </a>
