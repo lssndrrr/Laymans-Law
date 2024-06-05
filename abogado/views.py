@@ -191,4 +191,9 @@ def ASettings(request, roll_number):
     if request.method == "POST":
         pass
     else:
-        return render(request, "settings/lawyer_settings-acc.html", context)
+        return render(request, "settings/lawyer_settings-pass.html", context)
+    
+
+def logout_view(request):
+    logout(request)
+    return redirect('login/')
