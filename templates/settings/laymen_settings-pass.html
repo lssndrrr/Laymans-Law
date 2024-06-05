@@ -85,7 +85,22 @@
         background-repeat: no-repeat;
         background-position: center;
     }
- 
+    
+    .logout{
+        background-color: rgb(180, 112, 112);
+        color: rgb(255, 228, 228);
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100px;
+        height: 50px;
+        border-radius: 5px;
+        
+        margin-left: 16vw;
+        margin-bottom: 30px;
+    }
+    .logout:hover{
+        background-color: rgb(143, 56, 56);
+        
+    }
     </style>
 </head>
 
@@ -162,6 +177,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <form action="{% url 'ManggagawaLogout' %}" method="post" class="w-full">
+                        {% csrf_token %}
+                        <button type="submit" class="logout">Log out</button>
+                    </form>
+
                 </div>
             </div>
         </div>
