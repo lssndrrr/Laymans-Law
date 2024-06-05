@@ -4,6 +4,7 @@ from abogado.models import Abogado
 # Create your models here.
 
 class Law(models.Model):
+    index = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=1000)
     code = models.CharField(max_length=1000)
     fullLaw = models.CharField(max_length=1000)

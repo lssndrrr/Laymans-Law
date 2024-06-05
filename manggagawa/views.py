@@ -138,7 +138,7 @@ def loginM(request):
                 return redirect("MProfile", manggagawa.m_id)
             else:
                 form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-                return render(request, "manggagawa/laymen_login.html", {'form': form})
+                return render(request, "manggagawa/laymen_login2.html", {'form': form})
         else:
             try:
                 user = CustomUser.objects.get(email=form.data.get('email'), registered=False)
@@ -155,13 +155,13 @@ def loginM(request):
                     return render(request, 'manggagawa/laymen_login.html', {'form': form})
             except ValidationError as e:
                 form.add_error('password', e)
-                return render(request, 'manggagawa/laymen_login.html', {'form': form})
+                return render(request, 'manggagawa/laymen_login2.html', {'form': form})
         
     else:
         user_type = 'manggagawa'
         form = MLogin(initial={'user_type': user_type})
     context['form'] = form
-    return render(request, "manggagawa/laymen_login.html", context)
+    return render(request, "manggagawa/laymen_login2.html", context)
 
 
 @login_required
