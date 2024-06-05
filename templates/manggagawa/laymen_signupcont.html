@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        
+
+        .custom-bg{
+            background-image: url("{% static 'assets/reddark.png' %}");
+        }
+
+        /* General container styling */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            margin-top: 100px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Heading styling */
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Form control styling */
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        /* Button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Error message styling */
+        .form-group .errorlist {
+            color: red;
+            margin-top: 5px;
+        }
+
+        /* Label styling */
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+    </style>
+</head>
+<body class="custom-bg">
+    <div class="container ">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+                {{ form.first_name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+                {{ form.last_name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.middle_initial.label_tag }}
+                {{ form.middle_initial }}
+                {{ form.middle_initial.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.birth_date.label_tag }}
+                {{ form.birth_date }}
+                {{ form.birth_date.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.gender.label_tag }}
+                {{ form.gender }}
+                {{ form.gender.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.roll_number.label_tag }}
+                {{ form.roll_number }}
+                {{ form.roll_number.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.roll_signed_date.label_tag }}
+                {{ form.roll_signed_date }}
+                {{ form.roll_signed_date.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.contact_number.label_tag }}
+                {{ form.contact_number }}
+                {{ form.contact_number.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
