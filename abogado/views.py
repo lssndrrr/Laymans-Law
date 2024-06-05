@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import ARegistration, ALogin
 from .models import Abogado, Cases
-from authentication.forms import SignUpForm
+from authentication.forms import DeleteAccForm, SignUpForm, ChangePWForm, DeleteAccForm
 from authentication.models import CustomUser, CustomUserManager
 from django.http import HttpResponse
 from django.contrib import messages
@@ -13,6 +13,7 @@ import logging
 from django.contrib.auth import authenticate, login, logout, user_logged_in
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
+
 
 
 
@@ -189,8 +190,38 @@ def Wiki(request):
 def ASettings(request, roll_number):
     context = {}
     if request.method == "POST":
-        pass
+        pwform = ChangePWForm(request.POST)
+        delform = DeleteAccForm(request.POST)
+        if pwform.is_valid():
+            if not authenticate(email=request.user.email, password=request.POST['current_password']):
+                print('WEH')
+                pwform.add_error("current_password", "Current password is incorrect.")
+            else:
+                if request.POST['new_password1'] == request.POST['new_password2']:
+                    request.user.set_password(request.POST['new_password1'])
+                    print("changed")
+                    request.user.save()
+                else:
+                    raise pwform.ValidationError("Passwords do not match.")
+            return redirect(reverse('AbogadoLogin'))
+        elif delform.is_valid():
+            if not authenticate(email=request.user.email, password=request.POST['current_password']):
+                print('WEH')
+                delform.add_error("current_password", "Password is incorrect.")
+            elif not request.POST['confirm']:
+                delform.add_error("confirm", "Before proceeding, please confirm that you understand the consequences of this action.")
+            elif authenticate(email=request.user.email, password=request.POST['current_password']) and request.POST['confirm']:
+                request.user.delete()
+                return redirect(reverse('AbogadoLogin'))
+            print("User deleted successfully")
+            return render(request, "settings/lawyer_settings-pass.html", {'pwform': pwform, 'delform': delform})
+            
+        
     else:
+        pwform = ChangePWForm()
+        delform = DeleteAccForm()
+        context['pwform'] = pwform
+        context['delform'] = delform
         return render(request, "settings/lawyer_settings-pass.html", context)
     
 

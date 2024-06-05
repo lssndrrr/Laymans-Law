@@ -126,8 +126,8 @@
                 <div class="w-20 h-20 rounded-full logo-profile mr-3">
                 </div>                
                 <div>
-                    <h1 class="text-white font-bold text-xl">First Name</h1>
-                    <h5 class="text-white">Last Name</h3>
+                    <h1 class="text-white font-bold text-xl">{{user.abogado.first_name}}</h1>
+                    <h5 class="text-white">{{user.abogado.last_name}}</h3>
                 </div>
             </div>
 
@@ -178,27 +178,31 @@
 
                             <div class="relative" id="dropdownpassbutton">
                                 <div onclick="toggleDropdownPassword()" class="bg-blue-950 text-white rounded-xl p-4 mb-2 font-bold flex justify-between hover:cursor-pointer">
-                                    Change Password
+                                    <p>Change Password</p>
                                     <div id="arrow-pass" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
                                 </div>
                                 
                                 <div id="dropdownpass" class="bg-gray-200 rounded-xl p-6 mb-4 hidden">
-                                    <div class="flex flex-col mb-2 text-sm">
-                                        Current Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex flex-col text-sm mb-4">
-                                        New Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex flex-col text-sm mb-4">
-                                        Retype New Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div class="flex justify-end items-center mt-auto">
-                                        <button class="mr-8">Cancel</button>
-                                        <button class="bg-blue-900 text-white font-semibold p-2 rounded-lg shadow-md text-sm">Save Changes</button>
-                                    </div>
+                                    {{pwform.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col mb-2 text-sm">
+                                            Current Password:
+                                            {{pwform.current_password}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            New Password:
+                                            {{pwform.new_password1}}
+                                        </div>
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Retype New Password:
+                                            {{pwform.new_password2}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="mr-8" type="reset">Cancel</button>
+                                            <button class="bg-blue-900 text-white font-semibold p-2 rounded-lg shadow-md text-sm" type="submit">Save Changes</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -208,18 +212,23 @@
                                     <div id="arrow-delete" class="h-3 w-3 logo-dp flex mt-2 ml-3 transition-transform"></div>
                                 </div>
                                 
-                                <div id="dropdowndelete" class= "bg-gray-200 rounded-xl p-6 hidden">
-                                    <div class="flex flex-col text-sm mb-4">
-                                        Enter Password:
-                                        <input type="password" class="w-full mt-2 rounded-lg shadow-inner p-1">
-                                    </div>
-                                    <div  class="flex mb-4">
-                                        <input type="checkbox" id="confirm" class="w-4 rounded-lg mr-2">
-                                        <label for="confirm" class="text-sm"> I understand the consequences.</label>
-                                    </div>
-                                    <div class="flex justify-end items-center mt-auto">
-                                        <button class="bg-red-800 text-white p-2 rounded-lg shadow-md font-bold text-sm">Delete my account</button>
-                                    </div>
+                                <div id="dropdowndelete" class="bg-gray-200 rounded-xl p-6 hidden">
+                                    {{delform.current_password.errors}}
+                                    {{delform.new_password1.errors}}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="flex flex-col text-sm mb-4">
+                                            Enter Password:
+                                            {{delform.current_password}}
+                                        </div>
+                                        <div class="flex mb-4">
+                                            {{delform.confirm}}
+                                            {{delform.confirm.label}}
+                                        </div>
+                                        <div class="flex justify-end items-center mt-auto">
+                                            <button class="bg-red-800 text-white p-2 rounded-lg shadow-md font-bold text-sm" type="submit">Delete my account</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
