@@ -164,3 +164,11 @@ def Profile(request, roll_number):
 @login_required
 def Wiki(request):
     pass
+
+@login_required
+def ASettings(request, roll_number):
+    context = {}
+    if request.method == "POST":
+        pass
+    else:
+        return render(request, "settings/settings.html", context)

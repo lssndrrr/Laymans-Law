@@ -69,6 +69,7 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.non_field_errors }}
+            {{form.errors}}
             <div class="form-group">
                 {{ form.email.label_tag }}
                 {{ form.email }}
