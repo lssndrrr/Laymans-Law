@@ -225,6 +225,11 @@ def ASettings(request, roll_number):
         return render(request, "settings/lawyer_settings-pass.html", context)
     
 
+@login_required
+def Browse(request, roll_number):
+    context = {}
+    return render(request, 'abogado/lawyer_browsecase.html', context)
+
 def logout_view(request):
     logout(request)
     return redirect('AbogadoLogin')
