@@ -1,4 +1,3 @@
-from re import L
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import MRegistration, MLogin
