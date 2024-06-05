@@ -21,7 +21,6 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 def signupM(request):
-    return render(request, "manggagawa/laymen_signup2.html")
 
     context = {}
     if request.method == "POST":
@@ -78,7 +77,7 @@ def signupM(request):
         user_type = 'manggagawa'
         form = SignUpForm()
     context['form'] = form
-    return render(request, "manggagawa/laymen_signup.html", context)
+    return render(request, "manggagawa/laymen_signup2.html", context)
 
 
 

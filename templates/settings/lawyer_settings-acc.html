@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings</title>
+
+        <link rel="stylesheet" href="{% static 'output.css'%}">
+
+    <style>
+    /* Styling the scrollbar */
+    /* For Webkit based browsers */
+    ::-webkit-scrollbar {
+        width: 8px; /* Set the width of the scrollbar */
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Set the background color of the scrollbar track */
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Set the color of the scrollbar thumb */
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Change the color of the scrollbar thumb on hover */
+    }
+    .bg-bloo {
+        background-color: #2B2474;
+    }
+    .bg-bloo2 {
+        background-color: #4137B0;
+    }
+    .bg-set {
+        background-color: #F1F1F1;
+    }
+    .bg-photo{
+        background-image: url("{% static 'assets/bnw.png' %}");
+        background-size: cover;
+        background-position: center;
+    }    
+    .bg-left{
+        background-image: url("{% static 'assets/bluedark.png' %}");
+        background-size: cover;
+        background-position: center;
+    }
+    .logo-photo{
+        background-image: url("{% static 'assets/logo(1).png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-profile{
+        background-image: url("{% static 'assets/profile.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-home{
+        background-image: url("{% static 'assets/Home.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-browse{
+        background-image: url("{% static 'assets/Earth Globe.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-forum{
+        background-image: url("{% static 'assets/People Working Together.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-wiki{
+        background-image: url("{% static 'assets/Wikipedia.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .logo-settings{
+        background-image: url("{% static 'assets/GEAR.png' %}");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+ 
+    </style>
+</head>
+
+<body class="">
+    <div class="flex h-screen ">
+        <!-- navbar -->
+        <div class="w-1/4 h-screen bg-blue-950 flex-col items-center justify-items-center justify-center">
+            <!-- profile picture and name -->
+            <div class="flex items-center justify-start pl-12 mb-16 mt-12">
+                <div class="w-20 h-20 rounded-full logo-profile mr-3">
+                </div>                
+                <div>
+                    <h1 class="text-white font-bold text-xl">First Name</h1>
+                    <h5 class="text-white">Last Name</h3>
+                </div>
+            </div>
+
+            <!-- navigation buttons -->
+            <div class="flex flex-col items-center justify-center w-full">
+                <a href="/abogado/AHomepage" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                    <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
+                    Active Cases
+                </a>
+                <a href="#" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                    <div class="h-6 w-6 logo-browse mr-8 inline-block"></div>
+                    Browse Cases
+                </a>
+                <!-- <a href="#" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                    <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
+                    Forum
+                </a> -->
+                <a href="/wiki/WPrelim" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                    <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
+                    Wiki
+                </a>
+                <a href="/authentication/SPasswordAB" class="bg-bloo2 text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                    <div class="h-6 w-6 logo-settings mr-8 inline-block"></div>
+                    Settings
+                </a>
+            </div>
+        </div>
+        
+        <div class="h-full w-3/4 flex flex-col items-center justify-center bg-white bg-opacity-80">
+            <div class="h-full w-full flex flex-col items-center justify-center">
+    
+                <div class="flex w-full h-full flex-col items-center justify-center">
+                    
+                    <div class="flex flex-col w-full h-1/4 px-20 justify-center">
+                        <h1 class=" font-bold text-4xl">Settings</h1>
+                    </div>
+
+                    <!-- Cases tab -->
+                    <div class="h-full w-full flex justify-center">
+                        <div class="flex h-3/4 items-start pt-3 mr-10 ">
+                            <ul class="">
+                                <li class="mb-4">General</li>
+                                <li class="mb-4"><a href="/authentication/SPasswordAB">Password</a></li>
+                                <li class="mb-4 font-bold"><a href="/authentication/SAccountAB">Account</a></li>
+                            </ul>
+                        </div>
+                        <div class="h-3/4 w-3/4 bg-set text-black rounded-2xl shadow-lg flex flex-col p-10">
+                            <div class="mb-6 font-bold">Delete Account</div>
+                            <div class="flex mb-5">
+                                <input type="checkbox" class="w-4 rounded-lg mr-2">
+                                I understand the consequences.
+                            </div>
+                            <div>
+                                <button class="bg-red-600 text-white p-2 rounded-lg shadow-md font-bold">Delete my account</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -33,11 +33,11 @@ class MRegistration(forms.ModelForm):
 
 
 class MLogin(forms.ModelForm):
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Email'}))
     user_type = forms.CharField(widget=forms.HiddenInput, disabled=True)
     password = forms.CharField(required=True,
         label="Password",
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input'}), error_messages={
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input', 'placeholder':'Password'}), error_messages={
             'invalid': 'This user is not registered. Please proceed to sign up.'
         })
     
