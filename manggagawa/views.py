@@ -184,3 +184,8 @@ def ASettings(request, m_id):
 
 def submitcaseM(request):
     return render(request, "manggagawa/laymen_submitcase.html")
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('ManggagawaLogin')
