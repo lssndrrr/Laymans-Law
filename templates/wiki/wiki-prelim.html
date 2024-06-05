@@ -103,6 +103,7 @@
             display: none;
             margin-left: 5px;
         }
+        
     </style>
 </head>
 <body class="bg-photo">
@@ -154,13 +155,17 @@
             <div class="w-3/4 p-4 flex flex-col items-center">
                 <h1 class="mb-8 font-bold text-lg">PRELIMINARY TITLE</h1>
 
-                <div class="w-full flex flex-col items-center" id="summaryddbutton">
-                    <div onclick="toggleDDSummary()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
+                <div class="w-full flex flex-col items-center article" id="summaryddbutton">
+                    <div onclick="toggleDDSummary()" class="article bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
                         Summary
                     </div>
                     
-                    <div id="ddsumm" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
+                    <div id="ddsumm" class="article bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
                         Insert summary
+                    </div>
+
+                    <div class="article">
+
                     </div>
                 </div>
 
@@ -168,6 +173,8 @@
                     <div onclick="toggleDDTranslation()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">Translation</div>
                     <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden"> Insert translation</div>
                 </div>
+
+    
             </div>
         </div>
     </div>
@@ -193,19 +200,26 @@
             dropdowns.forEach(dropdown => {
                 const toggleButtons = dropdown.querySelectorAll('.dd-toggle');
                 const menus = dropdown.querySelectorAll('.dd-content');
+                const article = document.querySelector('.article')
 
                 toggleButtons.forEach((toggleButton, index) => {
                     const menu = menus[index];
 
+                    //let article_content =  baka magamit index sa books dito
+                    let article_content = "placeholder"
+
                     toggleButton.addEventListener('click', function() {
                         // Toggle the visibility of the dropdown menu
                         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+                        article.style.display = 'block';
+                        article.textContent = article_content;
                     });
 
                     window.addEventListener('click', function(e) {
                         // Check if the click is outside the dropdown menu and the toggle button
                         if (!toggleButton.contains(e.target) && !menu.contains(e.target)) {
                             menu.style.display = 'none';
+                            article.style.display = article.style.display === 'block' ? 'none' : 'block';
                         }
                     });
                 });
