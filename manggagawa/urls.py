@@ -10,5 +10,5 @@ urlpatterns = [
     path('profile/<int:m_id>/', views.ProfileM, name="MProfile"),
     #path('Profile/', views.checkProfile, name="Abogado Profile")
 
-    path('logout/', views.logout_view, name = "AbogadoLogout"),
+    path('logout/', views.Logout, name="ManggagawaLogout"),
 ]
