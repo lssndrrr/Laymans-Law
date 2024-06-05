@@ -12,5 +12,5 @@ urlpatterns = [
     path('profile/<int:roll_number>/settings/', views.ASettings, name="SettingsA"),
     path('profile/<int:roll_number>/browse', views.Browse, name="BrowseCases"),
     
-    path('logout/', views.logout_view, name = "AbogadoLogout"),
+    path('logout/', views.Logout, name="AbogadoLogout"),
 ]

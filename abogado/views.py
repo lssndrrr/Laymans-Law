@@ -230,6 +230,7 @@ def Browse(request, roll_number):
     context = {}
     return render(request, 'abogado/lawyer_browsecase.html', context)
 
-def logout_view(request):
+@login_required
+def Logout(request):
     logout(request)
     return redirect('AbogadoLogin')

@@ -234,10 +234,7 @@
                         </div>
                     </div>
 
-                    <form action="{% url 'AbogadoLogout' %}" method="post" class="w-full">
-                        {% csrf_token %}
-                        <button type="submit" class="logout">Log out</button>
-                    </form>
+                    <button href="{% url 'AbogadoLogout' %}" class="logout">Log out</button>
 
 
                 </div>

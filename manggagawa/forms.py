@@ -17,13 +17,13 @@ GENDER_CHOICES = (
     )
 
 class MRegistration(forms.ModelForm):
-    first_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    middle_initial = forms.CharField(max_length=3, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
+    last_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}))
+    middle_initial = forms.CharField(max_length=3, required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Middle Initial'}))
     birth_date = forms.DateField(required=True, widget=forms.DateInput(format="%Y-%m-%d", attrs={'type': 'date'}), input_formats=["%Y-%m-%d"])
-    gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True, widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Gender'}))
     contact_number = forms.RegexField(regex=r'^(09|\+639)\d{9}$', max_length=13, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), error_messages={
-            'invalid': 'Please enter a valid contact number in the format 09XXXXXXXXX or +639XXXXXXXXX.'
+            'invalid': 'Please enter a valid contact number in the format 09XXXXXXXXX or +639XXXXXXXXX.', 'placeholder': 'Contact Number'
         })
     trabaho = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     
