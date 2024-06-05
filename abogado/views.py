@@ -128,15 +128,19 @@ def loginA(request):
     context = {}
     if request.method == "POST":
         form = ALogin(request.POST)
+
         email = request.POST['email']
         password = request.POST['password']
-        try:
-            user = authenticate(request, email=email, password=password)
-        except ValidationError as e:
-            form.add_error('password', e)
+        user = authenticate(request, email=email, password=password)
+        if user is None:
+            if not CustomUser.objects.filter(email=email).exists():
+                form.add_error('email', 'User with this email does not exist.')
+            else:
+                form.errors.clear()
+                form.add_error('password', 'Invalid email or password.')
             return render(request, 'abogado/lawyer_login.html', {'form': form})
             
-        if user is not None and user.registered == True:
+        elif user is not None and user.registered == True:
             login(request, user)
             if request.user.is_authenticated:
                 abogado = request.user.abogado
@@ -144,7 +148,7 @@ def loginA(request):
                 # print(context)
             return redirect("AProfile", abogado.roll_number)
             
-        else:
+        elif user is not None and user.registered == False:
             try:
                 user = CustomUser.objects.get(email=form.data.get('email'), registered=False)
                 password = form.data.get('password')
