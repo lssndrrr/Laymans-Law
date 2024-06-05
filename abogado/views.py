@@ -233,4 +233,4 @@ def Browse(request, roll_number):
 @login_required
 def Logout(request):
     logout(request)
-    return redirect('AbogadoLogin')
+    return redirect(reverse('AbogadoLogin'))

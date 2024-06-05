@@ -103,7 +103,9 @@
             display: none;
             margin-left: 5px;
         }
-        
+        .article{
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-photo">
@@ -155,18 +157,21 @@
             <div class="w-3/4 p-4 flex flex-col items-center">
                 <h1 class="mb-8 font-bold text-lg">PRELIMINARY TITLE</h1>
 
-                <div class="w-full flex flex-col items-center article" id="summaryddbutton">
-                    <div onclick="toggleDDSummary()" class="article bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
+                <div class="w-full flex flex-col items-center" id="summaryddbutton">
+                    <div onclick="toggleDDSummary()" class="ogcont bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
                         Summary
                     </div>
                     
-                    <div id="ddsumm" class="article bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
+                    <div id="ddsumm" class="ogcont bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
                         Insert summary
                     </div>
 
-                    <div class="article">
+                    {% for law in laws %}
+                        <div class="article">
+                            {{ law.fullLaw }}
+                        </div>
+                    {% endfor %}
 
-                    </div>
                 </div>
 
                 <div class="w-full flex flex-col items-center" id="translationdd">
@@ -196,30 +201,35 @@
             }
 
             const dropdowns = document.querySelectorAll('.dropdown');
-
+            const article = document.querySelectorAll('.article');
+            
             dropdowns.forEach(dropdown => {
                 const toggleButtons = dropdown.querySelectorAll('.dd-toggle');
                 const menus = dropdown.querySelectorAll('.dd-content');
-                const article = document.querySelector('.article')
+                
 
+                let lawArray = [];
+
+                // Loop through laws and append fullLaw values to the array
+                
+
+                let cont = "This loop iterates over each Law object in the laws QuerySet and assigns the fullLaw attribute of each object to the article_content variable in JavaScript. Each iteration of the loop will generate JavaScript code with the fullLaw attribute of a specific Law object. Remember that this JavaScript code will be generated dynamically on the server-side, and the resulting article_content variable will contain the fullLaw attribute of the last Law object in the QuerySet after the loop finishes. If you want to use all fullLaw attributes in JavaScript, you might need to handle it differently, perhaps by creating an array of fullLaw strings and using it as needed."
+                
                 toggleButtons.forEach((toggleButton, index) => {
                     const menu = menus[index];
-
-                    //let article_content =  baka magamit index sa books dito
-                    let article_content = "placeholder"
+                    const artic = article[index]
 
                     toggleButton.addEventListener('click', function() {
                         // Toggle the visibility of the dropdown menu
                         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-                        article.style.display = 'block';
-                        article.textContent = article_content;
+                        artic.style.display = artic.style.display === 'block' ? 'none' : 'block';
                     });
 
                     window.addEventListener('click', function(e) {
                         // Check if the click is outside the dropdown menu and the toggle button
                         if (!toggleButton.contains(e.target) && !menu.contains(e.target)) {
                             menu.style.display = 'none';
-                            article.style.display = article.style.display === 'block' ? 'none' : 'block';
+                            artic.style.display = 'none';
                         }
                     });
                 });

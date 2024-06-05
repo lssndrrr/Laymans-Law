@@ -8,6 +8,8 @@ urlpatterns = [
     path('signup/', views.signupM, name="ManggagawaSignUp"),
     path('registration/', views.signupM2, name="ManggagawaSignUp2"),
     path('profile/<int:m_id>/', views.ProfileM, name="MProfile"),
+    path('profile/<int:m_id>/submit/', views.Submit, name="SubmitCase"),
+    path('profile/<int:m_id>/settings/', views.MSettings, name="SettingsM"),
     #path('Profile/', views.checkProfile, name="Abogado Profile")
 
     path('logout/', views.Logout, name="ManggagawaLogout"),

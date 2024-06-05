@@ -81,10 +81,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'laymanslaw.wsgi.application'
 
+LOGIN_URL = ''
+
 LOGIN_URLS = (
     '',
     'abogado/login/',
-    'manggagawa/login',
+    'manggagawa/login/',
 )
 
 
