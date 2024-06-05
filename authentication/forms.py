@@ -19,7 +19,7 @@ class SignUpForm(UserCreationForm):
         model = CustomUser
         fields = ('email',)
         
-class ChangePWForm(forms.ModelForm):
+class ChangePWForm(forms.Form):
     current_password = forms.CharField(
         label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input', 'placeholder': 'Old Password'}),
         )
@@ -31,10 +31,14 @@ class ChangePWForm(forms.ModelForm):
         label="New Password",
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'cpassword-input', 'placeholder': 'Confirm New Password'}),
     )
+    class Meta:
+        fields = ['password1', 'password2']
     
     
-class DeleteAccForm(forms.ModelForm):
+class DeleteAccForm(forms.Form):
     current_password = forms.CharField(
         label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input', 'placeholder': 'Old Password'}),
         )
-    confirm = forms.BooleanField(widget=forms.CheckboxInput())
+    confirm = forms.BooleanField(label="This action is irreversible. Are you sure you want to proceed?", widget=forms.CheckboxInput(attrs={'class': 'form-control'}))
+    class Meta:
+        fields = ['current_password', 'confirm']
