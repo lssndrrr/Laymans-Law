@@ -1,0 +1,46 @@
+from django import forms
+
+from authentication.models import CustomUser
+from .models import Manggagawa
+from django.core.exceptions import ValidationError 
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+GENDER_CHOICES = (
+    ('F', 'Female'),
+    ('M', 'Male'),
+    ('NB', 'Non-Binary'),
+    ('Other', 'Other / Prefer not to say')
+    )
+
+class MRegistration(forms.ModelForm):
+    first_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    middle_initial = forms.CharField(max_length=3, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    birth_date = forms.DateField(required=True, widget=forms.DateInput(format="%Y-%m-%d", attrs={'type': 'date'}), input_formats=["%Y-%m-%d"])
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+    contact_number = forms.RegexField(regex=r'^(09|\+639)\d{9}$', max_length=13, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), error_messages={
+            'invalid': 'Please enter a valid contact number in the format 09XXXXXXXXX or +639XXXXXXXXX.'
+        })
+    trabaho = forms.CharField(max_length=200, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
+    class Meta:
+        model = Manggagawa
+        fields = ('first_name', 'middle_initial', 'last_name', 'birth_date', 'gender', 'contact_number', 'trabaho')
+
+
+class MLogin(forms.ModelForm):
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    user_type = forms.CharField(widget=forms.HiddenInput, disabled=True)
+    password = forms.CharField(required=True,
+        label="Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input'}), error_messages={
+            'invalid': 'This user is not registered. Please proceed to sign up.'
+        })
+    
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'password', 'user_type')

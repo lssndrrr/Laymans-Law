@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from abogado.models import Abogado
+from manggagawa.models import Manggagawa
 
 # Create your models here.
 
@@ -44,6 +45,8 @@ class CustomUser(AbstractUser):
     
     abogado = models.OneToOneField(to=Abogado, on_delete=models.CASCADE, null=True, blank=True, related_name='user_profile', limit_choices_to={'user_type': 'abogado'})
     
+    manggagawa = models.OneToOneField(to=Manggagawa, on_delete=models.CASCADE, null=True, blank=True, related_name='user_profile', limit_choices_to={'user_type': 'manggagawa'})
+    
     def is_lawyer(self):
         return self.user_type == 'abogado'
 
@@ -52,6 +55,9 @@ class CustomUser(AbstractUser):
     
     def is_registered(self):
          return self.registered
+    
+    def get_short_name(self) -> str:
+        return self.email.split('@')[0]
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_type']

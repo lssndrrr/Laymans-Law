@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+        }
+
+            .sidebar a {
+                display: block;
+                padding: 10px;
+                margin-bottom: 10px;
+                background-color: #ddd;
+                text-decoration: none;
+                color: #000;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+                .sidebar a:hover {
+                    background-color: #bbb;
+                }
+
+        .content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .profile-header {
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="https://en.wikipedia.org" target="_blank">Wiki</a>
+        <a href="https://forum.example.com" target="_blank">Forum</a>
+        <a href="https://cases.example.com/active" target="_blank">Active Cases</a>
+        <a href="https://cases.example.com/browse" target="_blank">Browse Cases</a>
+    </div>
+    <div class="content">
+        <div class="profile-header">
+            <h1>Profile Name</h1>
+            <p>Profile description goes here.</p>
+        </div>
+        <p>Welcome to your profile page. Here you can find links to various resources on the sidebar.</p>
+    </div>
+</body>
+</html>

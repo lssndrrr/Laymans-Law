@@ -1,9 +1,8 @@
 {%load static%}
-
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="{% static 'manggagawa/laymen_login_style.css'%}">
+    <link rel="stylesheet" href="{% static 'abogado/lawyer_login.css'%}">
 </head>
 <title>Log In</title>
 <body>
@@ -16,13 +15,26 @@
             </div>
         </div>
 
-        <div class="login">
+        <form method="POST">
+            {% csrf_token %}
             <h1>Log in</h1>
-            <input type="email" placeholder="Email" />
-
-            <input type="password" placeholder="Password" />
-
-            <button>
+            {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.user_type }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                <div class="input-group">
+                    {{ form.password }}
+                </div>
+                {{ form.password.errors }}
+            </div>
+            <button type="submit">
                 Log in
             </button>
 
@@ -30,7 +42,7 @@
                 <h2>Don't have an account?</h2>
                 <a href="{%url 'ManggagawaSignUp'%}">Sign Up</a>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>
