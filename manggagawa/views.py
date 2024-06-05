@@ -20,7 +20,10 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
+
+
 def signupM(request):
+
     context = {}
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -76,7 +79,7 @@ def signupM(request):
         user_type = 'manggagawa'
         form = SignUpForm()
     context['form'] = form
-    return render(request, "manggagawa/laymen_signup.html", context)
+    return render(request, "manggagawa/laymen_signup2.html", context)
 
 
 
@@ -109,14 +112,14 @@ def signupM2(request):
         else:
             logger.warning('form2 is not valid')
             return render(request, "manggagawa/laymen_signup_cont.html", {'form': form})
-    elif request.GET.get('from') == 'ManggagawaSignUp' and request.GET.get('token') == request.session.get('token'):
+    elif (request.GET.get('from') == 'ManggagawaSignUp' or request.GET.get('from') == 'ManggagawaLogIn') and request.GET.get('token') == request.session.get('token'):
         del request.session['token']
         form = MRegistration()
         context['form'] = form
         return render(request, "manggagawa/laymen_signup_cont.html", context)
     else:
         return redirect(reverse('ManggagawaSignUp'))
-
+    
 def loginM(request):
     context = {}
     if request.method == "POST":
@@ -124,12 +127,12 @@ def loginM(request):
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
+        
         if user is not None and user.registered == True:
             
             if user is not None:
                 login(request, user)
                 if request.user.is_authenticated:
-                    print('i go here')
                     manggagawa = request.user.manggagawa
                     # context['roll_number'] = abogado.roll_number
                     # print(context)
@@ -145,7 +148,7 @@ def loginM(request):
                     
                     request.session['user_pk'] = user.pk
                     token = get_random_string(length=32)
-                    signupM2url = reverse('ManggagawaSignUp2') + f'?from=ManggagawaSignUp&token={token}'
+                    signupM2url = reverse('ManggagawaSignUp2') + f'?from=ManggagawaLogIn&token={token}'
                     request.session['token'] = token
                     return redirect(signupM2url)
                 else:
@@ -160,3 +163,25 @@ def loginM(request):
         form = MLogin(initial={'user_type': user_type})
     context['form'] = form
     return render(request, "manggagawa/laymen_login.html", context)
+
+
+@login_required
+def ProfileM(request, m_id):
+    context = {}
+    if request.method == "GET":
+        return render(request, "manggagawa/laymen_homepage.html", context)
+    
+@login_required
+def Wiki(request):
+    pass
+    
+@login_required
+def ASettings(request, m_id):
+    context = {}
+    if request.method == "POST":
+        pass
+    else:
+        return render(request, "settings/settings.html", context)
+
+def submitcaseM(request):
+    return render(request, "manggagawa/laymen_submitcase.html")

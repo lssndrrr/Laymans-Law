@@ -56,13 +56,13 @@
             height: 100%;
             z-index: -1;
         }
-        .content-container {
+        /* .content-container {
             position: relative;
-            /* height: calc(100% - 96px); Adjust based on your navbar height */
+            height: calc(100% - 96px); Adjust based on your navbar height
             overflow-y: auto;
-            margin-top: 86px; /* Adjust based on your navbar height */
-            /* padding: 1rem; */
-        }
+            margin-top: 86px;
+            padding: 1rem;
+        } */
 
 .w-20 {
     width: 5rem/* 80px */;
@@ -90,13 +90,14 @@
 }
     </style>
 </head>
-<body class="h-screen bg-photo">
-    <div class="h-screen bg-white bg-opacity-80">
-        <header class="bg-black bg-opacity-80 fixed top-0 w-full z-20">
+<body class="bg-photo">
+    <div class="h-screen bg-white bg-opacity-80 flex flex-col">
+        <!-- header -->
+        <div class="w-full h-20 bg-black bg-opacity-80 shadow-md">
             <nav class="flex justify-between items-center p-6">
-                <a href="/abogado/AHomepage"><div class="logo-photo h-10 w-20"></div></a>
+                <div class="logo-photo h-10 w-20"><a href="/abogado/AHomepage">#</a></div>
                 <div>
-                    <h1 class="text-white font-bold">LABOR CODE OF THE PHILIPPINES</h1>
+                    <h1 class="text-white font-bold"><a href="https://blr.dole.gov.ph/2014/12/11/labor-code-of-the-philippines/">LABOR CODE OF THE PHILIPPINES</a></h1>
                 </div>
                 <div>
                     <a class="text-white" href="#">
@@ -104,49 +105,41 @@
                     </a>
                 </div>
             </nav>
-        </header>
+        </div>
     
-        <main class="content-container">
-            <div class="h-screen flex flex-col items-center">
+        <div class="h-auto max-h-full w-full flex justify-center p-16 overflow-y-auto">
+            <div class="flex pt-28">
+                <ul><h1 class="font-bold">Contents</h1>
+                    <li class="mt-4">Preliminary</li>
+                    <li>Book I</li>
+                    <li>Book II</li>
+                    <li>Book III</li>
+                    <li>Book IV</li>
+                    <li>Book V</li>
+                    <li>Book VI</li>
+                    <li>Book VII</li>
+                </ul>
+            </div>
+            <div class="w-3/4  flex flex-col items-center ">
                 <h1 class="m-6 font-bold">PRELIMINARY TITLE</h1>
                 <h2>CHAPTER I</h2>
                 <h2 class="">GENERAL PROVISIONS</h2>
                 <br>
                 <p class="w-1/2">
-                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
-                    <br>
-                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
-                    <br>
-                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
-                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
-                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
-                    <br>
-                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
-                    <br>
-                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
-                    <br>
-                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
-                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
-                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
-                    <br>
-                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
-                    <br>
-                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
-                    <br>
-                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
-                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
-                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
-                    <br>
-                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”. <br>
-                    <br>
-                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation. <br>
-                    <br>
-                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, 
-                    ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. 
-                    The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”.
+
+                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation.
+
+                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
+                    
+                    Art. 4. Construction in favor of labor. All doubts in the implementation and interpretation of the provisions of this Code, including its implementing rules and regulations, shall be resolved in favor of labor.
+                    
+                    Art. 5. Rules and regulations. The Department of Labor and other government agencies charged with the administration and enforcement of this Code or any of its parts shall promulgate the necessary implementing rules and regulations. Such rules and regulations shall become effective fifteen (15) days after announcement of their adoption in newspapers of general circulation.
+                    
+                    Art. 6. Applicability. All rights and benefits granted to workers under this Code shall, except as may otherwise be provided herein, apply alike to all workers, whether agricultural or non-agricultural. (As amended by Presidential Decree No. 570-A, November 1, 1974)
                 </p>
             </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>
