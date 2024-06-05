@@ -1,5 +1,4 @@
 {%load static%}
-{% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +41,9 @@
       </div>
       
       <div class="w-1/2 h-screen bg-red-800 flex flex-col items-center justify-center">
-          <form class="flex flex-col items-center justify-center">
+          <form class="flex flex-col items-center justify-center" method="POST">
+            {% csrf_token %}
+
               <h1 class="mb-4 text-white text-2xl font-bold">Sign up</h1>
               <div class="block mb-2">
                 {{form.email}}
