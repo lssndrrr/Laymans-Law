@@ -115,7 +115,7 @@ def signupA2(request):
         else:
             logger.warning('form2 is not valid')
             return render(request, "abogado/lawyer_signup_cont.html", {'form': form})
-    elif (request.GET.get('from') == 'AbogadoSignUp' or request.GET.get('from') == 'LogIn') and request.GET.get('token') == request.session.get('token'):
+    elif (request.GET.get('from') == 'AbogadoSignUp' or request.GET.get('from') == 'AbogadoLogIn') and request.GET.get('token') == request.session.get('token'):
         del request.session['token']
         form = ARegistration()
         context['form'] = form
