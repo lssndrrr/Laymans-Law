@@ -1,0 +1,67 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'output.css'%}">
+        <title>Log In</title>
+        <style>
+            .bg-photo{
+                background-image: url("{% static 'assets/bluedark.png' %}");
+                background-size: cover;
+                background-position: center;
+            }
+            .bg-custom{
+                background-image: url("{% static 'assets/blue_bg.png'%}");
+            }
+            .darkoverlay{
+                background-color:  black;
+                opacity: 0.7;
+            }
+            .form-inputs{
+                /* height: 100%; */
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 4px;
+                padding-bottom: 4px;
+                border-radius: 16px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    
+    <body class="">
+        <div class="flex h-screen">
+            <div class="flex justify-center items-center bg-blue-900 w-1/2 h-screen">
+                <form method="POST" class="flex flex-col justify-center items-center">
+                    {% csrf_token %}
+                    <h1 class="text-white text-2xl font-bold mb-4">
+                        Log in
+                    </h1>
+                    {{ form.non_field_errors }}
+                    <div class="mb-2">
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                    <div>
+                        {{ form.user_type }}
+                    </div>
+                    <div class="mb-2">
+                        {{ form.password }}
+                        {{ form.password1.errors }}
+                    </div>
+                    <button type="submit" class="bg-blue-950 text-white py-2 px-3 rounded-full hover:bg-blue-600 hover:scale-105 mb-4">
+                        Submit
+                    </button>
+                    <div class="flex">
+                        <h2 class="text-white">Don't have an account?&nbsp;</h2>
+                        <a href="{%url 'AbogadoSignUp'%}" class="text-white font-bold hover:underline ">Sign Up.</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="w-1/2 bg-photo flex flex-col items-center justify-center">
+                <img src="{% static 'assets/logo(1).png'%}" class="h-1/6" alt=":["/>
+            </div>
+        </div>
+    </body>
+</html>
