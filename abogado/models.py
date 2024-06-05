@@ -14,7 +14,7 @@ class Abogado(models.Model):
     middle_initial = models.CharField(max_length=4)
     birth_date = models.DateField(validators=[validate_age])
     gender = models.CharField(max_length=20)
-    roll_number = models.IntegerField() # debating whether or not to turn this into a primary key
+    roll_number = models.IntegerField(unique=True) # debating whether or not to turn this into a primary key
     roll_signed_date = models.DateField()
     contact_number = models.CharField(max_length=15)
     
