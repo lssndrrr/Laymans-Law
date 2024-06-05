@@ -23,3 +23,9 @@ def loginM(request):
 
 def signupM(request):
     return render(request, "manggagawa/laymen_signup2.html")
+
+def homepageM(request):
+    return render(request, "manggagawa/laymen_homepage.html")
+
+def submitcaseM(request):
+    return render(request, "manggagawa/laymen_submitcase.html")

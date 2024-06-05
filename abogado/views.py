@@ -59,6 +59,11 @@ def homepageA(request):
         return render(request, "abogado/lawyer_homepage-obs.html")
     return render(request, "abogado/lawyer_homepage-obs.html")
 
+def browseA(request):
+    if request.method == "GET":
+        return render(request, "abogado/lawyer_browsecase.html")
+    return render(request, "abogado/lawyer_browsecase.html")
+
 def signupA(request):
     context = {}
     if request.method == "POST":

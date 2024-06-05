@@ -7,5 +7,6 @@ urlpatterns = [
     path('ASignUp/', views.signupA, name="AbogadoSignUp"),
     path('ASignUp2/', views.signupA2, name="AbogadoSignUp2"),
     path('AHomepage/', views.homepageA, name="AbogadoHomepage"),
+    path('ABrowse/', views.browseA, name="AbogadoBrowse"),
     # path('Profile/<int:roll_number>/', views.Profile, name="AProfile")
 ]
