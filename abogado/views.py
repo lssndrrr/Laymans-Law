@@ -12,6 +12,8 @@ from django.utils.crypto import get_random_string
 import logging
 from django.contrib.auth import authenticate, login, logout, user_logged_in
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
+
 
 
 
@@ -21,49 +23,6 @@ logger = logging.getLogger(__name__)
 
 # Create your views here.
 
-def loginA(request):
-    context = {}
-    if request.method == "POST":
-        form = ALogin(request.POST)
-        email = request.POST['email']
-        password = request.POST['password']
-        user = authenticate(request, email=email, password=password)
-            
-        if user is not None:
-            login(request, user)
-            if request.user.is_authenticated:
-                print('i go here')
-                abogado = request.user.abogado
-                # context['roll_number'] = abogado.roll_number
-                # print(context)
-            return redirect("AProfile", abogado.roll_number)
-        else:
-            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-            return render(request, "abogado/lawyer_login.html", {'form': form})
-    else:
-        user_type = 'abogado'
-        form = ALogin(initial={'user_type': user_type})
-    context['form'] = form
-    return render(request, "abogado/lawyer_login.html", context)
-
-
-
-def Profile(request, roll_number):
-    context = {}
-    print('i am here')
-    return render(request, "abogado/lawyer_homepage.html", context)
-    
-
-
-def homepageA(request):
-    if request.method == "GET":
-        return render(request, "abogado/lawyer_homepage-obs.html")
-    return render(request, "abogado/lawyer_homepage-obs.html")
-
-def browseA(request):
-    if request.method == "GET":
-        return render(request, "abogado/lawyer_browsecase.html")
-    return render(request, "abogado/lawyer_browsecase.html")
 
 def signupA(request):
     context = {}
@@ -156,7 +115,7 @@ def signupA2(request):
         else:
             logger.warning('form2 is not valid')
             return render(request, "abogado/lawyer_signup_cont.html", {'form': form})
-    elif (request.GET.get('from') == 'AbogadoSignUp' or request.GET.get('from') == 'LogIn') and request.GET.get('token') == request.session.get('token'):
+    elif (request.GET.get('from') == 'AbogadoSignUp' or request.GET.get('from') == 'AbogadoLogIn') and request.GET.get('token') == request.session.get('token'):
         del request.session['token']
         form = ARegistration()
         context['form'] = form
@@ -164,31 +123,48 @@ def signupA2(request):
     else:
         return redirect(reverse('AbogadoSignUp'))
     
+
 def loginA(request):
     context = {}
     if request.method == "POST":
         form = ALogin(request.POST)
+
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
+        if user is None:
+            if not CustomUser.objects.filter(email=email).exists():
+                form.add_error('email', 'User with this email does not exist.')
+            else:
+                form.errors.clear()
+                form.add_error('password', 'Invalid email or password.')
+            return render(request, 'abogado/lawyer_login.html', {'form': form})
             
-        if user is not None:
-            if user.registered == False:
-                 request.session['user_pk'] = user.pk
-                 token = get_random_string(length=32)
-                 signupA2url = reverse('AbogadoSignUp2') + f'?from=LogIn&token={token}'
-                 request.session['token'] = token
-                 return redirect(signupA2url)
+        elif user is not None and user.registered == True:
             login(request, user)
             if request.user.is_authenticated:
-                print('i go here')
                 abogado = request.user.abogado
                 # context['roll_number'] = abogado.roll_number
                 # print(context)
             return redirect("AProfile", abogado.roll_number)
-        else:
-            form.add_error('password', 'Invalid email or password.') ## to change, check if email is in database and add error/s accordingly
-            return render(request, "abogado/lawyer_login.html", {'form': form})
+            
+        elif user is not None and user.registered == False:
+            try:
+                user = CustomUser.objects.get(email=form.data.get('email'), registered=False)
+                password = form.data.get('password')
+                if check_password(password, user.password):
+                    
+                    request.session['user_pk'] = user.pk
+                    token = get_random_string(length=32)
+                    signupA2url = reverse('AbogadoSignUp2') + f'?from=AbogadoLogIn&token={token}'
+                    request.session['token'] = token
+                    return redirect(signupA2url)
+                else:
+                    
+                    return render(request, 'abogado/lawyer_login.html', {'form': form})
+            except ValidationError as e:
+                form.add_error('password', e)
+                return render(request, 'abogado/lawyer_login.html', {'form': form})
     else:
         user_type = 'abogado'
         form = ALogin(initial={'user_type': user_type})
@@ -200,10 +176,10 @@ def loginA(request):
 
     
 @login_required
-def Profile(request, roll_number):
+def ProfileA(request, roll_number):
     context = {}
-    print('i am here')
-    return render(request, "abogado/lawyer_homepage-obs.html", context)
+    if request.method == "GET":
+        return render(request, "abogado/lawyer_homepage-obs.html", context)
 
 @login_required
 def Wiki(request):
@@ -215,4 +191,4 @@ def ASettings(request, roll_number):
     if request.method == "POST":
         pass
     else:
-        return render(request, "settings/settings.html", context)
+        return render(request, "settings/lawyer_settings-acc.html", context)

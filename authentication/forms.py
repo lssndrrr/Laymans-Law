@@ -32,6 +32,7 @@ class ChangePWForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'cpassword-input', 'placeholder': 'Confirm New Password'}),
     )
     
+    
 class DeleteAccForm(forms.ModelForm):
     current_password = forms.CharField(
         label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'password-input', 'placeholder': 'Old Password'}),

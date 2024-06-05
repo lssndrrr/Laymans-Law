@@ -4,11 +4,9 @@ from . import views
 
 urlpatterns = [ 
     # path('createManggagawa/', views.createAbogado),
-    path('Mlogin/', views.loginM, name="ManggagawaLogin"),
-    path('MSignUp/', views.signupM, name="ManggagawaSignUp"),
-    path('MHomepage/', views.homepageM, name="ManggagawaHomepage"),
-    path('MSubmitcase/', views.submitcaseM, name="ManggagawaSubmitcase"),
-    path('MSignUp2/', views.signupM2, name="ManggagawaSignUp2"),
-    #path('Profile/<int:m_id>/', views.Profile, name="MProfile")
+    path('login/', views.loginM, name="ManggagawaLogin"),
+    path('signup/', views.signupM, name="ManggagawaSignUp"),
+    path('registration/', views.signupM2, name="ManggagawaSignUp2"),
+    path('profile/<int:m_id>/', views.ProfileM, name="MProfile")
     #path('Profile/', views.checkProfile, name="Abogado Profile")
 ]
