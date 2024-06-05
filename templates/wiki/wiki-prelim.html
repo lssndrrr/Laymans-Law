@@ -108,9 +108,10 @@
         </div>
     
         <div class="h-auto max-h-full w-full flex justify-center p-16 overflow-y-auto">
-            <div class="flex pt-28">
-                <ul><h1 class="font-bold">Contents</h1>
-                    <li class="mt-4">Preliminary</li>
+            <div class="flex flex-col pt-28">
+                <h1 class="font-bold">Contents</h1>
+                <ul class="text-sm">
+                    <li class="mt-4 font-bold">> Preliminary</li>
                     <li>Book I</li>
                     <li>Book II</li>
                     <li>Book III</li>
@@ -120,27 +121,40 @@
                     <li>Book VII</li>
                 </ul>
             </div>
-            <div class="w-3/4  flex flex-col items-center ">
-                <h1 class="m-6 font-bold">PRELIMINARY TITLE</h1>
-                <h2>CHAPTER I</h2>
-                <h2 class="">GENERAL PROVISIONS</h2>
-                <br>
-                <p class="w-1/2">
-                    Art. 1. Name of Decree. This Decree shall be known as the “Labor Code of the Philippines”.
+            <div class="w-3/4 p-4 flex flex-col items-center">
+                <h1 class="mb-8 font-bold text-lg">PRELIMINARY TITLE</h1>
 
-                    Art. 2. Date of effectivity. This Code shall take effect six (6) months after its promulgation.
+                <div class="w-full flex flex-col items-center" id="summaryddbutton">
+                    <div onclick="toggleDDSummary()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
+                        Summary
+                    </div>
+                    
+                    <div id="ddsumm" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
+                        Insert summary
+                    </div>
+                </div>
 
-                    Art. 3. Declaration of basic policy. The State shall afford protection to labor, promote full employment, ensure equal work opportunities regardless of sex, race or creed and regulate the relations between workers and employers. The State shall assure the rights of workers to self-organization, collective bargaining, security of tenure, and just and humane conditions of work.
-                    
-                    Art. 4. Construction in favor of labor. All doubts in the implementation and interpretation of the provisions of this Code, including its implementing rules and regulations, shall be resolved in favor of labor.
-                    
-                    Art. 5. Rules and regulations. The Department of Labor and other government agencies charged with the administration and enforcement of this Code or any of its parts shall promulgate the necessary implementing rules and regulations. Such rules and regulations shall become effective fifteen (15) days after announcement of their adoption in newspapers of general circulation.
-                    
-                    Art. 6. Applicability. All rights and benefits granted to workers under this Code shall, except as may otherwise be provided herein, apply alike to all workers, whether agricultural or non-agricultural. (As amended by Presidential Decree No. 570-A, November 1, 1974)
-                </p>
+                <div class="w-full flex flex-col items-center" id="translationdd">
+                    <div onclick="toggleDDTranslation()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">Translation</div>
+                    <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden"> Insert translation</div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        function toggleDDSummary(){
+            let ddsumm = document.querySelector('#summaryddbutton #ddsumm');
+            // let arrowPass = document.querySelector('#arrow-pass');
+            ddsumm.classList.toggle("hidden");
+            // arrowPass.classList.toggle("rotate-180");
+        }
+        function toggleDDTranslation(){
+            let ddtrans = document.querySelector('#translationdd #ddtrans');
+            // let arrowDelete = document.querySelector('#arrow-delete');
+            ddtrans.classList.toggle("hidden");
+            // arrowDelete.classList.toggle("rotate-180");
+        }
+    </script>
 </body>
 </html>
 

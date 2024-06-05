@@ -62,8 +62,8 @@ def homepageA(request):
 
 def browseA(request):
     if request.method == "GET":
-        return render(request, "abogado/lawyer-viewcase.html")
-    return render(request, "abogado/lawyer-viewcase.html")
+        return render(request, "abogado/lawyer_browsecase.html")
+    return render(request, "abogado/lawyer_browsecase.html")
 
 def signupA(request):
     context = {}
