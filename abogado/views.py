@@ -192,3 +192,8 @@ def ASettings(request, roll_number):
         pass
     else:
         return render(request, "settings/lawyer_settings-acc.html", context)
+    
+
+def logout_view(request):
+    logout(request)
+    return redirect('login/')
