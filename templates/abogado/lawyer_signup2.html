@@ -1,5 +1,5 @@
 {%load static%}
-{% csrf_token %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,30 +38,31 @@
 <body class="">
     <div class="flex h-screen">
         <div class="w-1/2 h-screen bg-blue-900 flex flex-col items-center justify-center">
-            <form class="flex flex-col items-center justify-center">
+            <form class="flex flex-col items-center justify-center" method="POST">
+                {% csrf_token %}
                 <h1 class="mb-4 text-white text-2xl font-bold">Sign up</h1>
                 <div class="block mb-2">
                     {{form.email}}
-                    <!-- <input class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email"> -->
+
                 </div>
                 <div class="mb-2">
                     {{form.password1}}
-                    <!-- <input class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password"> -->
                 </div>
                 <div class="mb-4">
                     {{form.password2}}
-                    <!-- <input class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="confirmpassword" type="password" placeholder="Confirm Password"> -->
+
                 </div>
                 <div class="mb-4">
-                    <button class="bg-blue-950 text-white py-2 px-3 rounded-full" type="button">
+                    <button class="bg-blue-950 text-white py-2 px-3 rounded-full" type="submit">
                         Create Account
                     </button>
                 </div>
-                <div class="flex items-center justify-center">
-                    <p class="text-white">Already have an account?&nbsp;</p>
-                    <a class="text-white font-bold" href="{%url 'AbogadoLogin'%}">Log in.</a>
-                </div>
+
             </form>
+            <div class="flex items-center justify-center">
+                <p class="text-white">Already have an account?&nbsp;</p>
+                <a class="text-white font-bold" href="{%url 'AbogadoLogin'%}">Log in.</a>
+            </div>
         </div>
 
         <div class="w-1/2 bg-photo flex flex-col items-center justify-center">

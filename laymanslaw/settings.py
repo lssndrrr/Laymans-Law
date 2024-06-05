@@ -153,3 +153,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # delete unregistered users after a month
 # 2 step verification
 # about page that uses count(abogado) so it can display current number of registered and verified lawyers
+# getting a copy of past cases thru settings and sending it to email
+# ability to pin cases
+# past cases tab
+# messaging feature
+# notifications
+# limit domains in email to valid domains (for abugado, this can be limited to domain of office if targeting PAO)
+# collaboration of lawyers on one case && manggagawa too
+# married lawyers, allow to edit info (need marriage cert)
+# database of jobs so they autocomplete when signing up and can look at all the ppl w certain jobs registered

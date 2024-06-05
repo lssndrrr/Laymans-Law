@@ -9,4 +9,6 @@ urlpatterns = [
     path('AHomepage/', views.homepageA, name="AbogadoHomepage"),
     path('ABrowse/', views.browseA, name="AbogadoBrowse"),
     # path('Profile/<int:roll_number>/', views.Profile, name="AProfile")
+    # path('AHomepage/', views.homepageA, name="AbogadoHomepage"),
+    path('Profile/<int:roll_number>/', views.Profile, name="AProfile")
 ]

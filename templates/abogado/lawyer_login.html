@@ -44,21 +44,21 @@
                     </div>
                     <div>
                         {{ form.user_type }}
-                    </div>
+                </div>
                     <div class="mb-2">
                         {{ form.password }}
                         {{ form.password1.errors }}
-                    </div>
+            </div>
                     <button type="submit" class="bg-blue-950 text-white py-2 px-3 rounded-full hover:bg-blue-600 hover:scale-105 mb-4">
                         Submit
-                    </button>
+                </button>
                     <div class="flex">
                         <h2 class="text-white">Don't have an account?&nbsp;</h2>
                         <a href="{%url 'AbogadoSignUp'%}" class="text-white font-bold hover:underline ">Sign Up.</a>
                     </div>
                 </form>
             </div>
-
+                
             <div class="w-1/2 bg-photo flex flex-col items-center justify-center">
                 <img src="{% static 'assets/logo(1).png'%}" class="h-1/6" alt=":["/>
             </div>
