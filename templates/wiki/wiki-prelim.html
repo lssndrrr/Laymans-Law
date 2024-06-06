@@ -126,39 +126,32 @@
         <div class="h-auto max-h-full w-full flex justify-center p-16 overflow-y-auto">
             <div class="flex flex-col pt-28">
                 <h1 class="font-bold">Contents</h1>
-                <ul class="text-sm dropdown">
+                <ul class="text-sm dropdown ">
                    {%for law in laws%}
-                    <li id="{{law.index}}" class="mt-4" onclick="select(event)">{{law.name}}</li>
+                    <li id="{{law.index}}" class="mt-4" onclick="select( this.id )">{{law.name}}</li>
                    {%endfor%}
-
                 </ul>
             </div>
             <div class="w-3/4 p-4 flex flex-col items-center">
-                <h1 class="mb-8 font-bold text-lg">PRELIMINARY TITLE</h1>
 
                 <div class="w-full flex flex-col items-center" id="summaryddbutton">
                     <div onclick="toggleDDSummary()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
-                        {% for summary in summaries%}
-                        {% if summary.summary_id == current_item%}
-                        {{summary.summary}}
-                        {%endif%}
-                        {%endfor%}
+                        <p>Summary</p>
                     </div>
                     
                     <div id="ddsumm" class=" bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
+                        summary 
                     </div>
 
                 </div>
 
                 <div class="w-full flex flex-col items-center" id="translationdd">
                     <div onclick="toggleDDTranslation()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
-                        {% for translation in translations%}
-                        {% if translation.translation_id == current_item%}
-                        {{translation.tagalog}}
-                        {%endif%}
-                        {%endfor%}
+                        <p>Translations</p>
                     </div>
-                    <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden"> Insert translation</div>
+                    <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
+                        Transaltions
+                    </div>
                 </div>
 
     
@@ -166,33 +159,47 @@
         </div>
     </div>
     <script>
-        let current_item = null;
-        document.addEventListener('DOMContentLoaded', function () {
-            function select(event) {
+        let current_item = document.getElementById(0);
 
-                if (current_item) {
-                    document.getElementById(current_item).classList.remove('bold');
-                }
+        const summaries = JSON.parse('{{ summaries|escapejs }}');
+        const translations = JSON.parse('{{ translations|escapejs }}');
 
-                // Add the bold class to the clicked item
-                event.target.classList.add('bold');
-                current_item = event.target.id;
-            }
+        function select(id) {
+            document.getElementById(id).style.fontWeight = document.getElementById(id).style.fontWeight === 'bold' ? 'normal':'bold';
+
+            console.log(id)
+            document.getElementById('ddsumm').innerHTML = summaries[id]
+            document.getElementById('ddtrans').innerHTML = summaries[id]
+
             
-            function toggleDDSummary(){
-            let ddsumm = document.querySelector('#summaryddbutton #ddsumm');
-            // let arrowPass = document.querySelector('#arrow-pass');
-            ddsumm.classList.toggle("hidden");
-            // arrowPass.classList.toggle("rotate-180");
+            if (current_item.id != id) { // Add the bold class to the clicked item
+                console.log(current_item)
+                document.getElementById(current_item).style.fontWeight = 'normal';  
             }
-            function toggleDDTranslation(){
-                let ddtrans = document.querySelector('#translationdd #ddtrans');
-                // let arrowDelete = document.querySelector('#arrow-delete');
-                ddtrans.classList.toggle("hidden");
-                // arrowDelete.classList.toggle("rotate-180");
-            }
+           
+        }
 
+        function toggleDDSummary() {
+
+            let ddsumm = document.querySelector('#summaryddbutton #ddsumm');  // let arrowPass = document.querySelector('#arrow-pass');
+           
+            ddsumm.classList.toggle("hidden");  // arrowPass.classList.toggle("rotate-180");
+           
+        }
+
+        function toggleDDTranslation() {
+
+            let ddtrans = document.querySelector('#translationdd #ddtrans'); // let arrowDelete = document.querySelector('#arrow-delete');
+            
+            ddtrans.classList.toggle("hidden"); // arrowDelete.classList.toggle("rotate-180");
+            
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            
             const dropdowns = document.querySelectorAll('.dropdown');
+
             const article = document.querySelectorAll('.article');
             const contener = document.getElementById('summaryddbutton')
 
@@ -221,6 +228,8 @@
                         }
                     });
                 });
+
+
             });
         });
     </script>
