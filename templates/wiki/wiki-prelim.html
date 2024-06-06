@@ -128,7 +128,7 @@
                 <h1 class="font-bold">Contents</h1>
                 <ul class="text-sm dropdown">
                    {%for law in laws%}
-                    <li class="mt-4 font-bold">>{{law.name}}</li>
+                    <li id="{{law.index}}" class="mt-4" onclick="toggleBold(event)">{{law.name}}</li>
                    {%endfor%}
 
                 </ul>
@@ -163,7 +163,14 @@
         </div>
     </div>
     <script>
-        
+        function toggleBold(event) {
+            // Remove the bold class from all list items
+            const items = document.querySelectorAll('.dropdown li');
+            items.forEach(item => item.classList.remove('bold'));
+
+            // Add the bold class to the clicked item
+            event.target.classList.add('bold');
+        }
         document.addEventListener('DOMContentLoaded', function() {
             
             function toggleDDSummary(){
