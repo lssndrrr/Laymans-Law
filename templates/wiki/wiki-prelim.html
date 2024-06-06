@@ -169,15 +169,18 @@
     </div>
     <script>
         let current_item = document.getElementById(0);
+        console.log(current_item.id)
         function select(id) {
-            document.getElementById(id).style.fontWeight = 'bold';
-            current_item = document.getElementById();
-            
-
+            console.log(id)
             if (current_item.id != id) {
                 console.log(current_item)
                 document.getElementById(current_item).style.fontWeight = 'normal';
             }
+            document.getElementById(id).style.fontWeight = 'bold';
+            current_item = document.getElementById(id);
+            
+
+            
             
 
             // Add the bold class to the clicked item
