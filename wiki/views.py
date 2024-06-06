@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Law, Summarizations, Translations
 from django.http import HttpResponse
-
+import json
 
 # Create your views here.
 def lawList(request):
@@ -18,9 +18,15 @@ def Wiki(request):
     if request.method == "GET":
         laws = Law.objects.all()
         context['laws'] = laws
+
         summaries = Summarizations.objects.all()
-        context['summaries'] = summaries
+        summaries_dict = {summary.law.index: summary.Summary for summary in summaries}
+        context['summaries'] = json.dumps(summaries_dict)
+        print(summaries)
+
         translations = Translations.objects.all()
-        context['translations'] = translations
+        translations_dict = {translation.law.index: translation.Bisaya_Translation for translation in translations}
+        context['translations'] = json.dumps(translations_dict)
+
         return render(request, "wiki/wiki-prelim.html", context)
 

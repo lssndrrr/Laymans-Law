@@ -126,11 +126,10 @@
         <div class="h-auto max-h-full w-full flex justify-center p-16 overflow-y-auto">
             <div class="flex flex-col pt-28">
                 <h1 class="font-bold">Contents</h1>
-                <ul class="text-sm dropdown">
+                <ul class="text-sm dropdown ">
                    {%for law in laws%}
-                    <li id="{{law.index}}" class="mt-4" onclick="select(this.id)">{{law.name}}</li>
+                    <li id="{{law.index}}" class="mt-4" onclick="select( this.id )">{{law.name}}</li>
                    {%endfor%}
-
                 </ul>
             </div>
             <div class="w-3/4 p-4 flex flex-col items-center">
@@ -141,11 +140,7 @@
                     </div>
                     
                     <div id="ddsumm" class=" bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                        {% for summary in summaries%}
-                        {% if summary.law == current_item.id%}
-                        <p>{{summary.summary}}</p>
-                        {%endif%}
-                        {%endfor%}
+                        summary 
                     </div>
 
                 </div>
@@ -155,11 +150,7 @@
                         <p>Translations</p>
                     </div>
                     <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                        {% for translation in translations%}
-                        {% if translation.law == current_item%}
-                        {{translation.TagalogTranslation}}
-                        {%endif%}
-                        {%endfor%}
+                        Transaltions
                     </div>
                 </div>
 
@@ -169,41 +160,46 @@
     </div>
     <script>
         let current_item = document.getElementById(0);
-        console.log(current_item.id)
+
+        const summaries = JSON.parse('{{ summaries|escapejs }}');
+        const translations = JSON.parse('{{ translations|escapejs }}');
+
         function select(id) {
+            document.getElementById(id).style.fontWeight = document.getElementById(id).style.fontWeight === 'bold' ? 'normal':'bold';
+
             console.log(id)
-            if (current_item.id != id) {
+            document.getElementById('ddsumm').innerHTML = summaries[id]
+            document.getElementById('ddtrans').innerHTML = summaries[id]
+
+            
+            if (current_item.id != id) { // Add the bold class to the clicked item
                 console.log(current_item)
-                document.getElementById(current_item).style.fontWeight = 'normal';
+                document.getElementById(current_item).style.fontWeight = 'normal';  
             }
-            document.getElementById(id).style.fontWeight = 'bold';
-            current_item = document.getElementById(id);
-            
-
-            
-            
-
-            // Add the bold class to the clicked item
-            
+           
         }
+
         function toggleDDSummary() {
-            let ddsumm = document.querySelector('#summaryddbutton #ddsumm');
-            // let arrowPass = document.querySelector('#arrow-pass');
-            ddsumm.classList.toggle("hidden");
-            // arrowPass.classList.toggle("rotate-180");
+
+            let ddsumm = document.querySelector('#summaryddbutton #ddsumm');  // let arrowPass = document.querySelector('#arrow-pass');
+           
+            ddsumm.classList.toggle("hidden");  // arrowPass.classList.toggle("rotate-180");
+           
         }
+
         function toggleDDTranslation() {
-            let ddtrans = document.querySelector('#translationdd #ddtrans');
-            // let arrowDelete = document.querySelector('#arrow-delete');
-            ddtrans.classList.toggle("hidden");
-            // arrowDelete.classList.toggle("rotate-180");
+
+            let ddtrans = document.querySelector('#translationdd #ddtrans'); // let arrowDelete = document.querySelector('#arrow-delete');
+            
+            ddtrans.classList.toggle("hidden"); // arrowDelete.classList.toggle("rotate-180");
+            
         }
+
+
         document.addEventListener('DOMContentLoaded', function () {
             
-            
-            
-
             const dropdowns = document.querySelectorAll('.dropdown');
+
             const article = document.querySelectorAll('.article');
             const contener = document.getElementById('summaryddbutton')
 
@@ -232,6 +228,8 @@
                         }
                     });
                 });
+
+
             });
         });
     </script>
