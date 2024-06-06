@@ -180,7 +180,11 @@ def Submit(request, m_id):
     context = {}
     if request.method == "POST":
         form = SubmitCase(request.POST)
-        form.save()
+        if form.is_valid():
+            case = form.save(commit=False)
+            case.done = False
+            case.raised_by = request.user.manggagawa
+            case.save()
         return render(request, "manggagawa/laymen_submitcase.html", context)
     else:
         form = SubmitCase()
