@@ -1,37 +1,26 @@
-{% load static %}
-
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+
+    <title>Sign Up - Manggagawa</title>
+
+    <link rel="stylesheet" href="{% static 'output.css'%}">
+
     <style>
-        
-
-        .custom-bg{
-            background-image: url("{% static 'assets/bluedark.png' %}");
+        .bg-photo{
+            background-image: url("{% static 'assets/reddark.png' %}");
+            background-size: cover;
+            background-position: center;
+        }    
+        .logo-photo{
+            background-image: url("{% static 'assets/logo(1).png' %}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
-
-        /* General container styling */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            margin-top: 100px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        /* Heading styling */
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* Form control styling */
         .form-control {
             padding-left: 8px;
             padding-right: 8px;
@@ -49,8 +38,8 @@
         /* Button styling */
         .btn {
             display: block;
-            width: 100%;
-            background-color: #007bff;
+            /* width: 50%; */
+            background-color: rgb(69 10 10);
             color: white;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
@@ -64,36 +53,38 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: rgb(111, 17, 17);
         }
 
         /* Error message styling */
         .form-group .errorlist {
             color: red;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         /* Label styling */
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
+            color:white;
         }
-
     </style>
+
 </head>
 <body class="">
     <div class="flex h-screen">
       
-      <div class="w-1/2 bg-photo flex flex-col items-center justify-center">
-        <div class="h-1/6 w-3/5 logo-photo"></div>
-      </div>
       
-      <div class="w-1/2 h-screen bg-red-800 flex flex-col items-center justify-center">
+      
+      <div class="w-1/2 h-screen bg-blue-900 flex flex-col items-center justify-center">
           <form class="flex flex-col items-center justify-center" method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors }}
+
+              <h1 class="mb-4 text-white text-2xl font-bold">Sign up</h1>
+              <div class="block mb-2"></div>
+              {{ form.non_field_errors }}
             <div class="form-group">
                 <!-- {{ form.first_name.label_tag }} -->
                 {{ form.first_name }}
@@ -135,8 +126,11 @@
                 {{ form.contact_number.errors }}
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
-
+              </div>
           </form>
+        <div class="w-1/2 bg-photo flex flex-col items-center justify-center">
+          <div class="h-1/6 w-3/5 logo-photo"></div>
+        </div>
       </div>
     </div>
 </body>

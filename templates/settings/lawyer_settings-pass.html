@@ -98,7 +98,11 @@
     .rotate-180 {
         transform: rotate(180deg);
     }
-    .logout{
+    .form-control{
+        border-radius: 6px;
+        padding: 2px;
+    }
+    /* .logout{
         background-color: rgb(180, 112, 112);
         color: rgb(255, 228, 228);
         font-family: Arial, Helvetica, sans-serif;
@@ -108,11 +112,11 @@
         margin-top: 10px;
         margin-left: 16vw;
         margin-bottom: 30px;
-    }
-    .logout:hover{
+    } */
+    /* .logout:hover{
         background-color: rgb(143, 56, 56);
         
-    }
+    } */
  
     </style>
 </head>
@@ -234,10 +238,12 @@
                         </div>
                     </div>
 
-                    <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
+                    <div class="w-full flex justify-end items-center pr-10 py-6">
+                        <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
+                            {% csrf_token %}
+                            <button type="submit" class="bg-blue-900 px-4 py-2 rounded-xl text-white font-bold">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
