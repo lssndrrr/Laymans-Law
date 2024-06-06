@@ -133,13 +133,13 @@
 
             <!-- navigation buttons -->
             <div class="flex flex-col items-center justify-center w-full">
-                <a href="{%url 'AProfile' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'MProfile' m_id=user.manggagawa.m_id%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-home mr-8 inline-block"></div>
-                    Active Cases
+                    Submitted Cases
                 </a>
-                <a href="{%url 'BrowseCases' roll_number=user.abogado.roll_number%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
+                <a href="{%url 'SubmitCase' m_id=user.manggagawa.m_id%}" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-browse mr-8 inline-block"></div>
-                    Browse Cases
+                    Submit Case
                 </a>
                 <!-- <a href="#" class="bg-bloo text-white font-bold mb-4 px-4 py-2 rounded-full w-3/4 flex">
                     <div class="h-6 w-6 logo-wiki mr-8 inline-block"></div>
@@ -232,12 +232,13 @@
                                 </div>
                             </div>
                         </div>
+                        <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
+                            {% csrf_token %}
+                            <button type="submit" class="flex items-center">Logout</button>
+                        </form>
                     </div>
 
-                    <form method="post" action="{% url 'AbogadoLogout' %}" class="logout">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
+                    
                 </div>
             </div>
         </div>
