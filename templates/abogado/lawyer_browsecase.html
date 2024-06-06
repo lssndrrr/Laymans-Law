@@ -142,10 +142,9 @@
                     <!-- Cases tab -->
                     <div class="h-full w-full flex flex-col overflow-y-auto">
                         <div class="h-auto max-h-full w-full overflow-y-auto text-center">
-                            <button class="bg-blue-950 shadow-md text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5">Case</button>
-                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 bg-opacity-60">Case</button>
-                            <button class="bg-black text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5 bg-opacity-60">Case</button>
-                            
+                            {%for case in cases%}
+                                <button class="bg-blue-950 shadow-md text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5">{{ case.name }}</button>
+                            {%endfor%}
                         </div>
                     </div>
                 </div>
