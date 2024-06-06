@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile/<int:roll_number>/', views.ProfileA, name="AProfile"),
     path('profile/<int:roll_number>/settings/', views.ASettings, name="SettingsA"),
     path('profile/<int:roll_number>/browse', views.Browse, name="BrowseCases"),
+    path('profile/<int:roll_number>/accept/<int:case_id>', views.AcceptCase, name="AcceptCase"),
     
     path('logout/', views.Logout, name="AbogadoLogout"),
 ]
