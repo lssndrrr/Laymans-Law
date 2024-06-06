@@ -254,7 +254,7 @@ def AcceptCase(request, roll_number, case_id):
             )
         request.user.abogado.cases_taken +=1
         request.user.abogado.save()
-        handles.instance.save()
+        handles.save()
         return redirect(reverse('BrowseCases'))
 
 @login_required
