@@ -185,7 +185,7 @@ def Submit(request, m_id):
             case.done = False
             case.raised_by = request.user.manggagawa
             case.save()
-        return render(request, "manggagawa/laymen_submitcase.html", context)
+        return render(request, "manggagawa/laymen_submitcase.html", {'form': SubmitCase()})
     else:
         form = SubmitCase()
         context['form'] = form
