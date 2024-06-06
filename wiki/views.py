@@ -20,11 +20,12 @@ def Wiki(request):
         context['laws'] = laws
 
         summaries = Summarizations.objects.all()
-        summaries_dict = {summary.summary_id: summary.Summary for summary in summaries}
+        summaries_dict = {summary.law.index: summary.Summary for summary in summaries}
         context['summaries'] = json.dumps(summaries_dict)
+        print(summaries)
 
         translations = Translations.objects.all()
-        translations_dict = {translation.translation_id: translation.Bisaya_Translation for translation in translations}
+        translations_dict = {translation.law.index: translation.Bisaya_Translation for translation in translations}
         context['translations'] = json.dumps(translations_dict)
 
         return render(request, "wiki/wiki-prelim.html", context)
