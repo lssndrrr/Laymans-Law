@@ -56,13 +56,6 @@
             height: 100%;
             z-index: -1;
         }
-        /* .content-container {
-            position: relative;
-            height: calc(100% - 96px); Adjust based on your navbar height
-            overflow-y: auto;
-            margin-top: 86px;
-            padding: 1rem;
-        } */
 
         .w-20 {
             width: 5rem/* 80px */;
@@ -165,11 +158,14 @@
         const translations = JSON.parse('{{ translations|escapejs }}');
 
         function select(id) {
-            document.getElementById(id).style.fontWeight = document.getElementById(id).style.fontWeight === 'bold' ? 'normal':'bold';
 
-            console.log(id)
+            for(let i=0; i<8; i++){
+                document.getElementById(i).style.fontWeight = 'normal'
+            }
+            document.getElementById(id).style.fontWeight = 'bold'
+
             document.getElementById('ddsumm').innerHTML = summaries[id]
-            document.getElementById('ddtrans').innerHTML = summaries[id]
+            document.getElementById('ddtrans').innerHTML = translations[id]
 
             
             if (current_item.id != id) { // Add the bold class to the clicked item
@@ -228,7 +224,6 @@
                         }
                     });
                 });
-
 
             });
         });
