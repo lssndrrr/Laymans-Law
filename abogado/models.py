@@ -23,7 +23,7 @@ class Abogado(models.Model):
     
     ## profile stuff
     verified = models.BooleanField(default=False)
-    # cases_taken
+    cases_taken = models.IntegerField(default=0)
     # wiki_contribs
     # optional! needs new library (Pillow) profile_pic = models.ImageField()
     

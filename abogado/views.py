@@ -181,6 +181,8 @@ def loginA(request):
 def ProfileA(request, roll_number):
     context = {}
     if request.method == "GET":
+        cases = Handles.objects.filter(abogado=request.user.abogado)
+        context['cases'] = cases
         return render(request, "abogado/lawyer_homepage-obs.html", context)
 
 @login_required
@@ -234,6 +236,23 @@ def Browse(request, roll_number):
         cases = Cases.objects.all()
         context['cases'] = cases
     return render(request, 'abogado/lawyer_browsecase.html', context)
+
+@login_required
+def AcceptCase(request, case_id):
+    context = {}
+    if request.method == "GET":
+        case = Cases.object.filter(case_id=case_id)
+        context['case'] = case
+        return render(request, 'abogado/lawyer_acceptcase.html', context)
+    else:
+        handles = Handles(
+            abogado = request.user.abogado,
+            case_id = case.case_id
+            )
+        request.user.abogado.cases_taken +=1
+        request.user.abogado.save()
+        handles.instance.save()
+        return redirect(reverse('BrowseCases'))
 
 @login_required
 def Logout(request):
