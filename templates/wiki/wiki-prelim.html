@@ -128,7 +128,7 @@
                 <h1 class="font-bold">Contents</h1>
                 <ul class="text-sm dropdown">
                    {%for law in laws%}
-                    <li id="{{law.index}}" class="mt-4" onclick="toggleBold(event)">{{law.name}}</li>
+                    <li id="{{law.index}}" class="mt-4" onclick="select(event)">{{law.name}}</li>
                    {%endfor%}
 
                 </ul>
@@ -138,23 +138,27 @@
 
                 <div class="w-full flex flex-col items-center" id="summaryddbutton">
                     <div onclick="toggleDDSummary()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
-                        Summary
+                        {% for summary in summaries%}
+                        {% if summary.summary_id == current_item%}
+                        {{summary.summary}}
+                        {%endif%}
+                        {%endfor%}
                     </div>
                     
                     <div id="ddsumm" class=" bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
                         
                     </div>
 
-                    {% for law in laws %}
-                        <div class="article bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                            {{ law.fullLaw }}
-                        </div>
-                    {% endfor %}
-
                 </div>
 
                 <div class="w-full flex flex-col items-center" id="translationdd">
-                    <div onclick="toggleDDTranslation()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">Translation</div>
+                    <div onclick="toggleDDTranslation()" class="bg-black bg-opacity-80 w-3/4 h-10 rounded-full text-white p-6 mb-4 flex items-center hover:cursor-pointer">
+                        {% for translation in translations%}
+                        {% if translation.translation_id == current_item%}
+                        {{translation.tagalog}}
+                        {%endif%}
+                        {%endfor%}
+                    </div>
                     <div id="ddtrans" class="bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden"> Insert translation</div>
                 </div>
 
@@ -163,13 +167,16 @@
         </div>
     </div>
     <script>
-        function toggleBold(event) {
-            // Remove the bold class from all list items
-            const items = document.querySelectorAll('.dropdown li');
-            items.forEach(item => item.classList.remove('bold'));
+        let current_item = null;
+        function select(event) {
+            
+            if (current_item) {
+                document.getElementById(current_item).classList.remove('bold');
+            }
 
             // Add the bold class to the clicked item
             event.target.classList.add('bold');
+            current_item = event.target.id;
         }
         document.addEventListener('DOMContentLoaded', function() {
             
