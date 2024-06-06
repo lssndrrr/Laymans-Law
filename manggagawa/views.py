@@ -168,6 +168,8 @@ def loginM(request):
 def ProfileM(request, m_id):
     context = {}
     if request.method == "GET":
+        cases = Cases.objects.filter(raised_by=request.user)
+        context['cases'] = cases
         return render(request, "manggagawa/laymen_homepage.html", context)
     
 @login_required

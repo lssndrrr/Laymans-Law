@@ -167,17 +167,17 @@
     </div>
     <script>
         let current_item = null;
-        function select(event) {
-            
-            if (current_item) {
-                document.getElementById(current_item).classList.remove('bold');
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            function select(event) {
 
-            // Add the bold class to the clicked item
-            event.target.classList.add('bold');
-            current_item = event.target.id;
-        }
-        document.addEventListener('DOMContentLoaded', function() {
+                if (current_item) {
+                    document.getElementById(current_item).classList.remove('bold');
+                }
+
+                // Add the bold class to the clicked item
+                event.target.classList.add('bold');
+                current_item = event.target.id;
+            }
             
             function toggleDDSummary(){
             let ddsumm = document.querySelector('#summaryddbutton #ddsumm');
