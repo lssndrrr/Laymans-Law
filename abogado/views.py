@@ -247,6 +247,7 @@ def AcceptCase(request, roll_number, case_id):
         context['case'] = case
         return render(request, 'abogado/lawyer-viewcase.html', context)
     else:
+        case = Cases.objects.get(case_id=case_id)
         handles = Handles(
             abogado = request.user.abogado,
             case_id = case.case_id
