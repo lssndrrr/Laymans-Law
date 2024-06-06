@@ -1,7 +1,8 @@
+from calendar import c
 from django import forms
 
 from authentication.models import CustomUser
-from .models import Manggagawa
+from .models import Cases, Manggagawa
 from django.core.exceptions import ValidationError 
 from django.conf import settings
 import logging
@@ -44,3 +45,11 @@ class MLogin(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'password', 'user_type')
+        
+class SubmitCase(forms.ModelForm):
+    name = forms.CharField(max_length=500, widget=forms.TextInput(attrs={}))
+    description = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={}))
+    
+    class Meta:
+        model = Cases
+        fields = ['name', 'description']
