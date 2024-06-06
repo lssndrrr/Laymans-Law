@@ -143,7 +143,9 @@
                     <div class="h-full w-full flex flex-col overflow-y-auto">
                         <div class="h-auto max-h-full w-full overflow-y-auto text-center">
                             {%for case in cases%}
+                            <a href="{%url 'AcceptCase' roll_number=user.abogado.roll_number case_id=case.case_id %}">
                                 <button class="bg-blue-950 shadow-md text-white font-bold mb-8 px-4 py-4 rounded-lg h-24 w-4/5">{{ case.name }}</button>
+                            </a>
                             {%endfor%}
                         </div>
                     </div>

@@ -77,21 +77,26 @@
                 <div class="w-4 h-4 mt-2 logo-dp hover:cursor-pointer"></div>
             </div>
             <div class="h-3/4 w-3/4 flex flex-col bg-gray-100 shadow-md rounded-e-xl p-10">
-                <div class="mb-4">
-                    <div class="text-2xl font-bold text-gray-600">Subject</div>
-                    <div class="text-gray-600">From: User Name</div>
-                </div>
-                <div class="bg-gray-200 text-gray-600 w-full h-4/5 rounded-lg p-4 mb-2">Insert Body</div>
-                <div class="w-full flex justify-start">
-                    <div class="text-xs text-gray-600 mb-4 mr-2">Email: useremail@gmail.com</div>
-                    <div class="text-xs text-gray-600 mb-4 mr-2">|</div>
-                    <div class="text-xs text-gray-600 mb-4 mr-2">Contact Number: 09XX XXX XXXX</div>      
-                    <div class="text-xs text-gray-600 mb-4 mr-2">|</div>              
-                    <div class="text-xs text-gray-600 mb-4">Occupation: Job</div>
-                </div>
-                <div class="w-full flex items-end justify-end">
-                    <button class="bg-blue-950 text-white rounded-xl shadow-md p-2 text-sm font-bold">Accept</button>
-                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <div class="text-2xl font-bold text-gray-600">{{case.name}}</div>
+                        <div class="text-gray-600">From: {{case.raised_by.first_name}}</div>
+                    </div>
+                    <div class="bg-gray-200 text-gray-600 w-full h-4/5 rounded-lg p-4 mb-2">
+                        {{case.desc}}
+                    </div>
+                    <div class="w-full flex justify-start">
+                        <div class="text-xs text-gray-600 mb-4 mr-2">Date Posted: {{case.date_added}}</div>
+                        <div class="text-xs text-gray-600 mb-4 mr-2">|</div>
+                        <div class="text-xs text-gray-600 mb-4 mr-2">Contact Number: {{case.raised_by.contact_number}}</div>      
+                        <div class="text-xs text-gray-600 mb-4 mr-2">|</div>              
+                        <div class="text-xs text-gray-600 mb-4">Occupation: {{case.raised_by.trabaho}}</div>
+                    </div>
+                    <div class="w-full flex items-end justify-end">
+                        <button class="bg-blue-950 text-white rounded-xl shadow-md p-2 text-sm font-bold" type="submit">Accept</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
