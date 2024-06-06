@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import MRegistration, MLogin, SubmitCase
 from .models import Manggagawa, Cases
-from authentication.forms import SignUpForm
+from authentication.forms import SignUpForm, ChangePWForm, DeleteAccForm
 from authentication.models import CustomUser, CustomUserManager
 from django.http import HttpResponse
 from django.contrib import messages
@@ -196,7 +196,40 @@ def Submit(request, m_id):
 @login_required
 def MSettings(request, m_id):
     context = {}
-    return render(request, "settings/laymen_settings-pass.html", context)
+    if request.method == "POST":
+        pwform = ChangePWForm(request.POST)
+        delform = DeleteAccForm(request.POST)
+        if pwform.is_valid():
+            if not authenticate(email=request.user.email, password=request.POST['current_password']):
+                print('WEH')
+                pwform.add_error("current_password", "Current password is incorrect.")
+            else:
+                if request.POST['new_password1'] == request.POST['new_password2']:
+                    request.user.set_password(request.POST['new_password1'])
+                    print("changed")
+                    request.user.save()
+                else:
+                    raise pwform.ValidationError("Passwords do not match.")
+            return redirect(reverse('ManggagawaLogin'))
+        elif delform.is_valid():
+            if not authenticate(email=request.user.email, password=request.POST['current_password']):
+                print('WEH')
+                delform.add_error("current_password", "Password is incorrect.")
+            elif not request.POST['confirm']:
+                delform.add_error("confirm", "Before proceeding, please confirm that you understand the consequences of this action.")
+            elif authenticate(email=request.user.email, password=request.POST['current_password']) and request.POST['confirm']:
+                request.user.delete()
+                return redirect(reverse('AbogadoLogin'))
+            print("User deleted successfully")
+            return render(request, "settings/laymen_settings-pass.html", {'pwform': pwform, 'delform': delform})
+            
+        
+    else:
+        pwform = ChangePWForm()
+        delform = DeleteAccForm()
+        context['pwform'] = pwform
+        context['delform'] = delform
+        return render(request, "settings/laymen_settings-pass.html", context)
 
 
 @login_required
