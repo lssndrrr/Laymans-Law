@@ -238,7 +238,7 @@ def Browse(request, roll_number):
     return render(request, 'abogado/lawyer_browsecase.html', context)
 
 @login_required
-def AcceptCase(request, case_id):
+def AcceptCase(request, roll_ucase_id):
     context = {}
     if request.method == "GET":
         case = Cases.object.filter(case_id=case_id)
