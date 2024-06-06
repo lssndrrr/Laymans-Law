@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .forms import ARegistration, ALogin
-from .models import Abogado, Cases
+from .models import Abogado, Handles
+from manggagawa.models import Cases
 from authentication.forms import DeleteAccForm, SignUpForm, ChangePWForm, DeleteAccForm
 from authentication.models import CustomUser, CustomUserManager
 from django.http import HttpResponse
@@ -227,7 +228,11 @@ def ASettings(request, roll_number):
 
 @login_required
 def Browse(request, roll_number):
+    
     context = {}
+    if request.method == "GET":
+        cases = Cases.objects.all()
+        context['cases'] = cases
     return render(request, 'abogado/lawyer_browsecase.html', context)
 
 @login_required
