@@ -238,12 +238,13 @@ def Browse(request, roll_number):
     return render(request, 'abogado/lawyer_browsecase.html', context)
 
 @login_required
-def AcceptCase(request, case_id):
+def AcceptCase(request, roll_number, case_id):
     context = {}
     if request.method == "GET":
-        case = Cases.object.filter(case_id=case_id)
+        case = Cases.objects.filter(case_id=case_id)
+        print(case)
         context['case'] = case
-        return render(request, 'abogado/lawyer_acceptcase.html', context)
+        return render(request, 'abogado/lawyer-viewcase.html', context)
     else:
         handles = Handles(
             abogado = request.user.abogado,
