@@ -250,7 +250,7 @@ def AcceptCase(request, roll_number, case_id):
         case = Cases.objects.get(case_id=case_id)
         handles = Handles(
             abogado = request.user.abogado,
-            case_id = case.case_id
+            case_id = case
             )
         request.user.abogado.cases_taken +=1
         request.user.abogado.save()
