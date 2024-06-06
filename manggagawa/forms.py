@@ -47,8 +47,8 @@ class MLogin(forms.ModelForm):
         fields = ('email', 'password', 'user_type')
         
 class SubmitCase(forms.ModelForm):
-    name = forms.CharField(max_length=500, widget=forms.TextInput(attrs={}))
-    description = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={}))
+    name = forms.CharField(max_length=500, widget=forms.TextInput(attrs={'placeholder': 'Subject'}))
+    description = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'placeholder': 'Write your concerns here...'}))
     
     class Meta:
         model = Cases

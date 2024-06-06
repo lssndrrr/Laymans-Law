@@ -161,14 +161,13 @@
                     </div>
                     
                     <div id="ddsumm" class=" bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                        Insert summary
+                        {% for law in laws %}
+                            
+                                {{ law.fullLaw }}
+                            
+                        {% endfor %}
                     </div>
 
-                    {% for law in laws %}
-                        <div class="article bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                            {{ law.fullLaw }}
-                        </div>
-                    {% endfor %}
 
                 </div>
 
