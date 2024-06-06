@@ -53,3 +53,10 @@ class SubmitCase(forms.ModelForm):
     class Meta:
         model = Cases
         fields = ['name', 'description']
+        
+    def save(self, commit=True):
+        instance = super(SubmitCase, self).save(commit=False)
+        instance.desc = self.cleaned_data.get('description')
+        if commit:
+            instance.save()
+        return instance
