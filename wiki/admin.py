@@ -7,4 +7,12 @@ from .models import Law, Translations, Summarizations
 class LawAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Summarizations)
+class SummarizationsAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Translations)
+class TranslationsAdmin(admin.ModelAdmin):
+    pass
+
 # SUGGESTIONS, SMTH LIKE TIKTOK. PREDICTIVE ON WHAT CASES TO TAKE
