@@ -219,7 +219,7 @@ def MSettings(request, m_id):
                 delform.add_error("confirm", "Before proceeding, please confirm that you understand the consequences of this action.")
             elif authenticate(email=request.user.email, password=request.POST['current_password']) and request.POST['confirm']:
                 request.user.delete()
-                return redirect(reverse('AbogadoLogin'))
+                return redirect(reverse('ManggagawaLogin'))
             print("User deleted successfully")
             return render(request, "settings/laymen_settings-pass.html", {'pwform': pwform, 'delform': delform})
             
