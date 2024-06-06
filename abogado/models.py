@@ -32,4 +32,4 @@ class Handles(models.Model):
     case_id = models.OneToOneField(to=Cases, on_delete=models.CASCADE)
     date_taken = models.DateField(auto_now_add=True)
     done = models.BooleanField(default=False)
-    date_closed = models.DateField()
+    date_closed = models.DateField(null=True, blank=True)
