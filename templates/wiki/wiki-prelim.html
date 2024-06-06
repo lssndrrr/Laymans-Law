@@ -127,28 +127,9 @@
             <div class="flex flex-col pt-28">
                 <h1 class="font-bold">Contents</h1>
                 <ul class="text-sm dropdown">
-                    <li class="mt-4 font-bold">> Preliminary</li>
-                    
-                    <li class="dd-toggle">Book I</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book II</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book III</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book IV</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book V</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book VI</li>
-                    <li class = "dd-content">content</li>
-
-                    <li class="dd-toggle">Book VII</li>
-                    <li class = "dd-content">content</li>
+                   {%for law in laws%}
+                    <li class="mt-4 font-bold">>{{law.name}}</li>
+                   {%endfor%}
 
                 </ul>
             </div>
@@ -161,7 +142,7 @@
                     </div>
                     
                     <div id="ddsumm" class=" bg-gray-400 w-3/4 rounded-2xl p-6 mb-4 hidden">
-                        Insert summary
+                        
                     </div>
 
                     {% for law in laws %}
