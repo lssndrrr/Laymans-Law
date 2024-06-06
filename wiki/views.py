@@ -14,6 +14,13 @@ def prelimW(request):
     return render(request, "wiki/wiki-prelim.html")
 
 def Wiki(request):
+    context = {}
     if request.method == "GET":
-        return render(request, "wiki/wiki-prelim.html")
+        laws = Law.objects.all()
+        context['laws'] = laws
+        summaries = Summarizations.objects.all()
+        context['summaries'] = summaries
+        translations = Translations.objects.all()
+        context['translations'] = translations
+        return render(request, "wiki/wiki-prelim.html", context)
 
