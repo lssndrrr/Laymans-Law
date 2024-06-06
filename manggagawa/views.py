@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import MRegistration, MLogin
+from .forms import MRegistration, MLogin, SubmitCase
 from .models import Manggagawa, Cases
 from authentication.forms import SignUpForm
 from authentication.models import CustomUser, CustomUserManager
@@ -179,14 +179,18 @@ def Wiki(request):
 def Submit(request, m_id):
     context = {}
     if request.method == "POST":
-        pass
+        form = SubmitCase(request.POST)
+        form.save()
+        return render(request, "manggagawa/laymen_submitcase.html", context)
     else:
+        form = SubmitCase()
+        context['form'] = form
         return render(request, "manggagawa/laymen_submitcase.html", context)
     
 @login_required
 def MSettings(request, m_id):
     context = {}
-    return render(request, "manggagawa/laymen_submitcase.html", context)
+    return render(request, "manggagawa/laymen_settings-pass.html", context)
 
 
 @login_required
