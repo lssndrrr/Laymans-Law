@@ -190,7 +190,7 @@ def Submit(request, m_id):
 @login_required
 def MSettings(request, m_id):
     context = {}
-    return render(request, "manggagawa/laymen_settings-pass.html", context)
+    return render(request, "settings/laymen_settings-pass.html", context)
 
 
 @login_required
