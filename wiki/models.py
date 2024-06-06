@@ -15,9 +15,9 @@ class Law(models.Model):
 class Translations(models.Model):
     law = models.ForeignKey(to=Law, on_delete=models.CASCADE)
     translation_id = models.AutoField(primary_key=True)
-    Bisaya_Translation = models.CharField(max_length=10000)
-    Tagalog_Translation = models.CharField(max_length=10000)
-    Waray_Translation = models.CharField(max_length=10000)
+    Bisaya_Translation = models.CharField(max_length=5000)
+    Tagalog_Translation = models.CharField(max_length=5000)
+    Waray_Translation = models.CharField(max_length=5000)
     def Get_Translation(self, language):
         if language == "Bisaya":
             return self.Bisaya_Translation
@@ -42,7 +42,7 @@ class Summarizations(models.Model):
     law = models.ForeignKey(to=Law, on_delete=models.CASCADE)
     def __str__(self):
         return self.Summary
-    Summary = models.CharField(max_length=10000)
+    Summary = models.CharField(max_length=5000)
     
 class SummaryInfo(models.Model):
     submit_date = models.DateField(auto_now_add=True)
