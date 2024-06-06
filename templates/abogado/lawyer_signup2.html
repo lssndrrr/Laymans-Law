@@ -31,7 +31,9 @@
             width: 240px;
             /* box-shadow: 1px 1px 1px black; */
         }
-        
+        .form-control.errorlist{
+            color: white;
+        }
     </style>
 
 </head>
@@ -40,16 +42,20 @@
         <div class="w-1/2 h-screen bg-blue-900 flex flex-col items-center justify-center">
             <form class="flex flex-col items-center justify-center" method="POST">
                 {% csrf_token %}
+                {{ form.non_field_errors }}
                 <h1 class="mb-4 text-white text-2xl font-bold">Sign up</h1>
                 <div class="block mb-2">
                     {{form.email}}
-
+                    {{ form.email.errors }}
                 </div>
                 <div class="mb-2">
                     {{form.password1}}
+                    {{ form.password1.errors }}
                 </div>
                 <div class="mb-4">
                     {{form.password2}}
+                    {{ form.password2.errors }}
+
 
                 </div>
                 <div class="mb-4">
